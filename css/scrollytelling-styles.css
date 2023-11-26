@@ -1,0 +1,82 @@
+/* CSS reset */
+a,abbr,acronym,address,applet,big,blockquote,body,caption,cite,code,dd,del,dfn,div,dl,dt,fieldset,font,form,h1,h2,h3,h4,h5,h6,html,iframe,img,ins,kbd,label,legend,li,object,ol,p,pre,q,s,samp,small,span,strike,sub,sup,table,tbody,td,tfoot,th,thead,tr,tt,ul,var{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit}:focus{outline:0}body{line-height:1;color:#000;background:#fff}ol,ul{list-style:none}table{border-collapse:separate;border-spacing:0}caption,td,th{text-align:left;font-weight:400}blockquote:after,blockquote:before,q:after,q:before{content:""}blockquote,q{quotes:"" ""}.alignleft{float:left}.alignright{float:right}.clear{clear:both}
+
+/* CSS */
+body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.5em;
+    background-color: darkslategray;
+    color: #01080D;
+    box-sizing: border-box;
+}
+
+.map {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+#scrolly {
+    position: relative;
+    background-color: black;
+}
+
+article {
+    position: relative;
+    padding: 0;
+    max-width: 20rem;
+    margin: 0;
+}
+
+figure {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: darkslategray;
+    z-index: 0;
+}
+
+.step {
+    margin: 0 auto 2rem 1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.step:last-child {
+    margin-bottom: 0;
+}
+
+.step.is-active p {
+    background-color: #64a19d;
+    color: #3b3b3b;
+}
+
+
+.step p {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: #3b3b3b;
+}
+
+.step .other-paragraphs p {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #fff;
+    padding: 2rem;
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.about-section h2 {
+    font-size: 1.3rem;
+}

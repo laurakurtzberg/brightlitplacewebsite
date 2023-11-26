@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "tt-labels",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Shark River Slough" }, "geometry": { "type": "Point", "coordinates": [ -80.707095177200813, 25.981098711247466 ] } },
+{ "type": "Feature", "properties": { "name": "Taylor Slough" }, "geometry": { "type": "Point", "coordinates": [ -80.63982458449712, 25.31679324642931 ] } },
+{ "type": "Feature", "properties": { "name": "Tamiami Trail" }, "geometry": { "type": "Point", "coordinates": [ -80.576894242104714, 25.759195251063581 ] } }
+]
+}

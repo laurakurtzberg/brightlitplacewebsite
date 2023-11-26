@@ -1,0 +1,334 @@
+@import url('https://fonts.cdnfonts.com/css/ll-detechno-glitch');
+
+.episode-list {
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.episode-list img {
+    height: 100%;
+    width: 100%;
+}
+
+.episode {
+    height: 300px;
+    width: 300px;
+    margin: 20px;
+    margin-bottom: 60px;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.4s;
+    position: relative;
+}
+
+.episode a {
+    color: white;
+}
+
+.episode:hover {
+    height: 310px;
+    width: 310px;
+}
+
+.episode p {
+    position: absolute;
+    bottom: -50px;
+    background-color: #0a090a;
+    padding: 8px;
+    border-radius: 5px;
+    width: 300px;
+    left: calc(50% - 150px);
+}
+
+.episode p.description {
+    bottom: 100px;
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.episode p.description:hover {
+    opacity: 1;
+}
+
+.blocked {
+    pointer-events: none;
+}
+
+.blocked:hover {
+    height: 300px;
+    width: 300px;
+}
+
+.blocked-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(63, 63, 63, 0.7);
+}
+
+.published {
+    border: 1px solid #77e57e;
+}
+
+h1.episode-header {
+    text-align: left;
+    font-family: 'LL DEtechno Glitch', sans-serif;
+    font-size: 5rem;
+    line-height: 4rem;
+    position: relative;
+    z-index: 10000;
+    background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.44));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.masthead.episode-header {
+    padding: 0;
+    padding-top: 8rem;
+    height: auto;
+}
+
+h2.episode-number-and-title {
+    font-size: 2rem;
+    position: relative;
+    z-index: 10000;
+    text-transform: uppercase;
+    letter-spacing: 0.8rem;
+    font-weight: bold;
+    pointer-events: none;
+    padding-top: 2rem;
+}
+
+.masthead.episode1 {
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url("../assets/img/frank_f.jpg");
+    pointer-events: none;
+}
+
+.masthead.episode2 {
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url("../assets/img/tree_island_frank.jpg");
+    pointer-events: none;
+}
+
+.masthead.episode3 {
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url("../assets/img/brush.jpg");
+    pointer-events: none;
+}
+
+.masthead div.linear-gradient-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: linear-gradient(rgba(42, 53, 38, 0) 0%, rgba(0, 0, 0, 0.4) 75%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.masthead div.linear-gradient-underlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1000;
+    background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(27, 71, 27, 0.4) 75%, rgba(0, 0, 0, 0.9) 100%);
+}
+
+.podcast-player-section {
+    padding: 2rem;
+    background: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.9) 75%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+
+@media (min-width: 992px) {
+    #mainNav:not(.navbar-shrink) .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #mainNav:not(.navbar-shrink) .navbar-brand {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .carousel-item .img-container {
+        height: 50vh;
+    }
+}
+
+@media (min-width: 1092px) {
+    #carouselWithCaptions {
+        width: 80%;
+        margin: auto;
+    }
+
+    .carousel-item .img-container {
+        height: 60vh;
+    }
+}
+
+#carouselWithCaptions {
+    margin-top: 2rem;
+}
+
+.carousel-item {
+    width: 100%;
+    background: black;
+    margin-bottom: 2rem;
+}
+
+.carousel-item .img-container {
+    overflow: hidden;
+    height: 80%;
+}
+
+.carousel-item div p {
+    color: white;
+}
+
+.carousel-item div p:first-child {
+    padding: 10px;
+    padding-top: 30px;
+}
+
+#mainNav:not(.navbar-shrink) {
+    margin-top: 2rem;
+}
+
+#links-to-home {
+    background: black;
+}
+
+#links-to-home div {
+    padding: 0 3rem;
+    z-index: 1000;
+    height: 2rem;
+    line-height: 2rem;
+    width: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#links-to-home div a {
+    text-decoration: none;
+}
+
+/* new addition: logos at top of homepage */
+
+
+.top-page-logos-container {
+    width: 220px;
+    margin: auto;
+}
+
+.top-page-logo img {
+    max-width: 100px;
+}
+
+.top-page-logo img.first {
+    padding-right: 20px;
+}
+
+.light-font {
+    color: #64a19d;
+}
+
+.light-font a {
+    padding-left: 6px;
+}
+
+/* Styles for the Listen links to other platforms */
+
+.listening-buttons {
+    margin: 3rem auto;
+    padding-top: 0;
+}
+
+.listening-platform-button {
+    border: 1px solid white;
+    background: #000000;
+    color: white;
+    font-weight: bold;
+    width: 350px;
+    height: 65px;
+    text-align: center;
+    padding: 2px;
+    border-radius: 8px;
+    text-align: left;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+}
+
+.listening-platform-button span {
+    display: inline-block;
+}
+
+.listening-platform-button span::before {
+    position: absolute;
+    left: 8px;
+    top: calc(50% - 25px);
+}
+
+.npr-link::before {
+    content: url("../assets/img/npr-network-light.svg");
+    display: inline-block;
+    width: 60px;
+    margin-right: 16px;
+}
+
+.amazon-music-link::before {
+    content: url("../assets/img/amazon-music-color.svg");
+    display: inline-block;
+    width: 50px;
+    margin-right: 16px;
+}
+
+.spotify-link::before {
+    content: url("../assets/img/spotify-color.svg");
+    display: inline-block;
+    background: #262626;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    margin-right: 16px;
+}
+
+.apple-podcasts-link::before {
+    content: url("../assets/img/apple-podcasts-color.svg");
+    display: inline-block;
+    width: 50px;
+    margin-right: 16px;
+}
+
+.google-podcast-link::before {
+    content: url("../assets/img/google-podcasts-color.svg");
+    display: inline-block;
+    width: 50px;
+    margin-right: 16px;
+}
+
+.image-caption-container {
+    min-height: 88px;
+}
