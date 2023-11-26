@@ -209,6 +209,7 @@ h2.episode-number-and-title {
 
 #mainNav:not(.navbar-shrink) {
     margin-top: 2rem;
+    z-index: 1000000;
 }
 
 #links-to-home {

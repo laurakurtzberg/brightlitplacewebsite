@@ -23,6 +23,7 @@
     <!-- (new CSS file)-->
     <link href="css/episode-styles.css" rel="stylesheet">
     <link href="css/map-styles.css" rel="stylesheet">
+    <link href="css/background-video-styles.css" rel="stylesheet">
 
 </head>
 
@@ -53,21 +54,30 @@
         </div>
     </nav>
     <!-- Masthead-->
-    <header class="masthead welcome">
-        <div class="linear-gradient-underlay"></div>
-
-        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-
-            <div class="d-flex justify-content-center">
-
-
-                <div class="text-center">
-                    <h1 class="mx-auto my-0 text-uppercase">Bright Lit <br>Place</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">The Everglades is dying. Our new podcast looks at the struggle to save it - and the costs of failure.</h2>
+    <div class="video-background-holder">
+        <div class="video-background-overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="assets/img/background-video.mp4" type="video/mp4">
+        </video>
+        <div class="video-background-content container h-100">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100 text-white">
+                    <div class="lead">
+                        <header class="video-masthead">
+                            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                                <div class="d-flex justify-content-center">
+                                    <div class="text-center">
+                                        <h1 class="mx-auto my-0 text-uppercase">Bright Lit Place</h1>
+                                        <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 
     <main>
         <!-- First Section of Text -->
