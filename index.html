@@ -44,11 +44,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#episodes">Episodes</a></li>
-                    <!--
-                    <li class="nav-item"><a class="nav-link" href="scroll-story.html">Story</a></li>
-                    -->
+                    <li class="nav-item"><a class="nav-link" href="https://brightlitplace.org/#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://brightlitplace.org/#episodes">Episodes</a></li>
                 </ul>
             </div>
         </div>
@@ -85,7 +82,8 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <p class="text-white-50">
-                            In 2000, the U.S. set out on one of the most ambitious environmental projects ever attempted: to wind back the clock and make the Everglades function like it once did — in 1900. The plan could have given Florida a 20-year head start on climate change, but that didn't happen.
+                            In 2000, the U.S. set out on one of the most ambitious environmental projects ever attempted: to reconnect the Everglades and make it function like it did a century ago. The plan could have given Florida a 20-year head start on climate change, but that didn't happen.
+                            Scroll down to learn more about the Everglades through a series of maps.
                     </p>
                 </div>
             </div>
@@ -93,36 +91,37 @@
 
         <section class="legends">
           <div id="historyLegend" class="legend invisible">
-            <p class="legend-title">Florida in the 1940s</p>
-            <div>
-              <span class="colorcube" style="background-color: #111f25"></span> <span>Freshwater Marshes</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #14250c"></span> <span>Cypress Forests</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #1b3328"></span> <span>Saltwater Marshes and Wet Praries</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #35645a"></span> <span>Sawgrass Marshes</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #1d3c45"></span> <span>Slough, Ponds, Lakes</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #588e62"></span> <span>Miami Rockland Pine</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #76864f"></span> <span>Pine Flatwood Forests</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #264630"></span> <span>Willow and Elderberry</span>
-            </div>
-            <div>
-              <span class="colorcube" style="background-color: #6aa159"></span> <span>Custard Apple Zone</span>
-            </div>
-            <div>
-              <span class="legendline" style="background-color: #fff"></span> <span>Everglades Boundary</span>
+            <div class="mobile-only minibutton" onclick="revealLegend('historyLegend-content')"><span class="ion-ios-information"></span></div>
+            <div class="legend-content" id="historyLegend-content" onclick="sidelineLegend('historyLegend-content')">
+              <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
+              <p class="legend-title">Florida in the 1940s</p>
+              <div>
+                <span class="colorcube" style="background-color: #111f25"></span> <span>Freshwater Marshes</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #14250c"></span> <span>Cypress Forests</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #1b3328"></span> <span>Saltwater Marshes and Wet Praries</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #35645a"></span> <span>Sawgrass Marshes</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #1d3c45"></span> <span>Slough, Ponds, Lakes</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #588e62"></span> <span>Miami Rockland Pine</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #76864f"></span> <span>Pine Flatwood Forests</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #264630"></span> <span>Willow and Elderberry</span>
+              </div>
+              <div>
+                <span class="colorcube" style="background-color: #6aa159"></span> <span>Custard Apple Zone</span>
+              </div>
             </div>
           </div>
 
@@ -135,6 +134,9 @@
           </div>
 
           <div id="urbanizationLegend" class="legend invisible">
+            <div class="mobile-only minibutton" onclick="revealLegend('urbanizationLegend-content')"><span class="ion-ios-information"></span></div>
+            <div class="legend-content" id="urbanizationLegend-content" onclick="sidelineLegend('urbanizationLegend-content')">
+            <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
             <p class="legend-title">Urbanization and Agriculture, Present Day</p>
             <div>
               <span class="colorcube" style="background-color: #b4b4b4"></span> <span>Urban and Built Up</span>
@@ -146,14 +148,19 @@
               <span class="colorcube" style="background-color: #73645e"></span> <span>Rangeland</span>
             </div>
             <div>
-              <span class="legendline" style="background-color: #fff"></span> <span>Current Everglades Boundary</span>
+              <span class="legendline" style="background-color: #e77148"></span> <span>Regional Drainage Canals</span>
             </div>
+          </div>
           </div>
 
           <div id="riverLegend" class="legend invisible">
+            <div class="mobile-only minibutton" onclick="revealLegend('riverLegend-content')"><span class="ion-ios-information"></span></div>
+            <div class="legend-content" id="riverLegend-content" onclick="sidelineLegend('riverLegend-content')">
+            <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
             <div>
               <span class="legendline" style="background-color: #47efe7"></span> <span>Caloosahatchee River and Canal</span>
             </div>
+          </div>
           </div>
 
           <div id="riverSource" class="source invisible">
@@ -165,19 +172,31 @@
           </div>
 
           <div id="sugarcaneLegend" class="legend invisible">
+            <div class="mobile-only minibutton" onclick="revealLegend('sugarcaneLegend-content')"><span class="ion-ios-information"></span></div>
+            <div class="legend-content" id="sugarcaneLegend-content">
+            <div class="mobile-only miniminibutton" onclick="sidelineLegend('sugarcaneLegend-content')"><span class="ion-ios-close"></span></div>
             <div>
               <span class="colorcube" style="background-color: #eadfb9"></span> <span>Sugarcane Crop Cover</span>
             </div>
           </div>
+          </div>
 
           <div id="staLegend" class="legend invisible">
+            <div class="mobile-only minibutton" onclick="revealLegend('staLegend-content')"><span class="ion-ios-information"></span></div>
+            <div class="legend-content" id="staLegend-content">
+            <div class="mobile-only miniminibutton" onclick="sidelineLegend('staLegend-content')"><span class="ion-ios-close"></span></div>
             <div>
               <span class="colorcube yellow-border" style="background-color: black"></span> <span>Stormwater Treatment Areas</span>
             </div>
           </div>
+          </div>
 
-          <div id="treeislandSource" class="source invisible">
+          <div id="treeIslandSource" class="source invisible">
             <p>Source: USGS EROS Center | Landsat 5 image of tree islands in 1985</p>
+          </div>
+
+          <div id="ttSource" class="source invisible">
+            <p>Source: Open Street Map</p>
           </div>
 
         </section>
@@ -189,25 +208,39 @@
 
             <article id="articlecontainer">
 
-                <div class="step" data-step="1" style="height: 860px;">
+                <div class="step" data-step="1" style="height: 1000px;" id="step1">
                     <p>History</p>
                     <div class="other-paragraphs">
                         <p>
-                            Before the urbanization of South Florida, the Everglades provided a lush, biodiverse landscape of mangroves, marshes, grasses, and tree islands covereing about 4,000 square miles.
+                            Before the urbanization of South Florida, the
+                            Everglades provided a lush, biodiverse landscape
+                            of mangroves, marshes, grasses, and tree islands
+                            covering about 4,000 square miles.
                         </p>
+                        <p>1 of 7</p>
                     </div>
                 </div>
 
-                <div class="step" data-step="2" style="height: 860px;">
+                <div class="step" data-step="2" style="height: 1000px;" id="step2">
                     <p>Urbanization</p>
                     <div class="other-paragraphs">
                         <p>
-                            Today, the only untouched part of the wilderness lies in Everglades National Park and covers just one fifth of the original footprint.  What remains of the wetlands outside the park is now used for storage and flood control, and is in danger of shrinking even more due to expanding development.
+                            Today, the only untouched part of the wilderness
+                            lies in Everglades National Park and covers just
+                            one fifth of the original footprint.
+                            What remains of the wetlands outside the park is
+                            now used for storage and flood control
+                            <span class="mobile-only">.</span>
+                            <span class="mobile-hide">, and is in
+                            danger of shrinking even more due to expanding
+                            development, sea rise and peat soil collapse.
+                            </span>
                         </p>
+                        <p>2 of 7</p>
                     </div>
                 </div>
 
-                <div class="step" data-step="2" style="height: 860px;">
+                <div class="step" data-step="3" style="height: 1000px;" id="step3">
                     <p>The Liquid Heart</p>
                     <div class="other-paragraphs">
                         <input id="swipe" type="range" value=0 style="width: 100%">
@@ -215,154 +248,102 @@
                           <span id="before">Historic High <br>Water Levels</span> <span id="after">Post-drainage <br>Lake Size</span>
                         </div>
                         <p>
-                            Lake Okeechobee provides much of the freshwater to the Everglades during the dry season. It’s also where one of the first incisions was made into the Everglades, when Hamilton Disston dredged a canal connecting the Caloosahatchee River to the lake. That opened up commerce, but also set the stage for decades of dredging  and filling that scarred the swamp and hampered its ability to keep wetlands healthy.
+                            Lake Okeechobee provides much of the freshwater to
+                            the Everglades during the dry season. It’s also
+                            where one of the first incisions was made into
+                            the Everglades, when Hamilton Disston dredged a
+                            canal connecting the Caloosahatchee River to the
+                            lake.
+                            <span class="mobile-hide"> That opened up commerce,
+                              but also set the stage for decades of dredging
+                              and filling that scarred the swamp and hampered
+                              its ability to keep wetlands healthy.</span>
                         </p>
+                        <p>3 of 7</p>
                     </div>
                 </div>
 
-                <div class="step" data-step="2" style="height: 860px;">
+                <div class="step" data-step="4" style="height: 1000px;" id="step4">
                     <p>From Wetlands to Agriculture</p>
                     <div class="other-paragraphs">
                         <p>
-                            Today, sugar cane fields cover about a half million acres south of Lake Okeechobee. The sugar industry expanded dramatically beginning in the 1960s, when a U.S. Sugar embargo was issued after Fidel Castro seized power in Cuba.
+                            Today, sugarcane fields cover about a half million
+                            acres south of Lake Okeechobee. The sugar industry
+                            expanded dramatically beginning in the 1960s,
+                            when a U.S. sugar embargo was issued after
+                            Fidel Castro seized power in Cuba.
                         </p>
+                        <p>4 of 7</p>
                     </div>
                 </div>
 
 
-                <div class="step" data-step="2" style="height: 860px;">
+                <div class="step" data-step="5" style="height: 1000px;" id="step5">
                     <p>Stormwater Treatment Areas</p>
                     <div class="other-paragraphs">
                         <p>
-                            A series of landmark lawsuits over polluted water flowing into the Everglades from sugarcane fields led the state to build a series of treatment marshes. The marshes also provide flood control. So far, the marshes have failed to meet strict phosphorus limits, with the deadline to begin complying just two years away.
+                            A series of landmark lawsuits over polluted water
+                            flowing into the Everglades from sugarcane fields
+                            led the state to build a series of treatment marshes.
+                            The marshes also provide flood control.
+                            <span class="mobile-hide">So far,
+                            only one set of treatment marshes is on target to
+                            meet strict phosphorus limits, with the deadline
+                            to begin complying just two years away.</span>
                         </p>
+                        <p>5 of 7</p>
                     </div>
                 </div>
 
                 <div class="outer-photo-gallery-container">
-                    <div class="inner-photo-gallery-container">
-                      <div id="full-Size-Carousel-1" class="carousel slide" data-bs-ride="carousel">
-                          <div class="carousel-inner">
-                              <div class="carousel-item active" data-bs-interval="10000">
-                                  <div class="img-container-2">
-                                      <video class="responsivevideo" width="100%" autoplay loop muted>
-                                        <source src="assets/img/sfwmd-video.mp4" type="video/mp4">
-                                      </video>
-                                  </div>
-                                  <div class="map-carousel-legend">
-                                      <div>
-                                          <p class="image-caption">Workers wade in the water as they plant Bulrush for the South Florida Water Management District.</p>
-                                          <p>Video by: Patrick Farrell</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="carousel-item" data-bs-interval="10000">
-                                  <div class="img-container-2">
-                                    <video class="responsivevideo" width="100%" autoplay loop muted>
-                                      <source src="assets/img/riverofgrass.mp4" type="video/mp4">
-                                    </video>
-                                  </div>
-                                  <div class="map-carousel-legend">
-                                      <div>
-                                          <p class="image-caption">A boat moves through the grass in the Everglades.</p>
-                                          <p>Video by: Jenny Staletovich</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="carousel-item" data-bs-interval="10000">
-                                  <div class="img-container-2">
-                                      <img src="assets/img/IngrioLopez2.jpg" class="d-block" loading="lazy" alt="Ingrio Lopez and other workers planting bulrush.">
-                                  </div>
-                                  <div class="map-carousel-legend">
-                                      <div>
-                                          <p class="image-caption">Worker Ingrio Lopez wades in the water while planting Bulrush in Stormwater Treatment Area 1 West.</p>
-                                          <p>Photo by: Patrick Farrell</p>
-                                      </div>
-
-                                  </div>
-                              </div>
-                              <div class="carousel-item" data-bs-interval="10000">
-                                  <div class="img-container-2">
-                                      <img src="assets/img/z.jpg" class="d-block" loading="lazy" alt="An alligator swimming.">
-                                  </div>
-                                  <div class="map-carousel-legend">
-                                      <div>
-                                          <p class="image-caption">An alligator swims in Stormwater Treatment Area 1 West.</p>
-                                          <p>Photo by: Patrick Farrell</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="carousel-item" data-bs-interval="10000">
-                                  <div class="img-container-2">
-                                      <img src="assets/img/rest.jpg" class="d-block" loading="lazy" alt="Another 1916 cartoon about efforts to drain the Everglades">
-                                  </div>
-                                  <div class="map-carousel-legend">
-                                      <div>
-                                          <p class="image-caption">South Bay, Florida: Workers relax in the shade during a break after wading in the water as they planted Bulrush for the South Florida Water Management District (SFWMD) in Stormwater Treatment Area 1 West as part of a vegetation management program.</p>
-                                          <p>Photo by: Patrick Farrell</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="carousel-item" data-bs-interval="10000">
-                                  <div class="img-container-2">
-                                      <img src="assets/img/dragonfly.jpg" class="d-block" loading="lazy" alt="A dragonfly landing on vegatation.">
-                                  </div>
-                                  <div class="map-carousel-legend">
-                                      <div>
-                                          <p class="image-caption">South Bay, Florida: A dragonfly lands on vegetation in Stormwater Treatment Area 1 West.</p>
-                                          <p>Photo by: Patrick Farrell</p>
-                                      </div>
-                                  </div>
-                              </div>
-
-                          </div>
-
-                          <button class="carousel-control-prev" type="button" data-bs-target="#full-Size-Carousel-1" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="#full-Size-Carousel-1" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                          </button>
+                  <div class="inner-photo-gallery-container">
+                    <div class="video-background">
+                        <video class="responsivevideo" width="100%" autoplay loop muted>
+                          <source src="assets/img/riverofgrass.mp4" type="video/mp4">
+                        </video>
+                     </div>
+                     <div class="map-carousel-legend">
+                        <div>
+                            <p class="image-caption">An airboat moves through
+                              cattails and other aquatic vegetation in a
+                              Stormwater Treatment Area.</p>
+                            <p>Video by: Jenny Staletovich</p>
+                        </div>
                       </div>
                     </div>
-                </div>
+              </div>
 
-                <div class="step" data-step="2" style="height: 661px;">
+                <div class="step" data-step="6" style="height: 1000px;" id="step6">
                     <p>Tree Islands</p>
                     <div class="other-paragraphs">
                         <p>
-                            Tree islands used by the Miccosukee Tribe once filled the central Everglades. Water flowing slowly south from Lake Okeechobee carried sediment, helping form the islands over thousands of years. Since about 1950, half of those islands have disappeared because of water management operations.
+                            Tree islands used by the Miccosukee Tribe once filled
+                            the central Everglades. Water flowing slowly south from
+                            Lake Okeechobee carried sediment, helping form the
+                            islands over thousands of years. Since about 1950,
+                            half of those islands have disappeared because of
+                            water management operations.
                         </p>
+                        <p>6 of 7</p>
                     </div>
                 </div>
 
-                <div class="step" data-step="2" style="height: 661px;">
+                <div class="step" data-step="7" style="height: 1000px;" id="step7">
                     <p>Tamiami Trail South</p>
                     <div class="other-paragraphs">
                         <p>
-                            To increase the amount of freshwater flowing into the Everglades from Shark River and Taylor Slough, a series of bridges and culverts are being constructed along the Tamiami Trail. That could help revive southern marshes and Florida Bay. But restoration still lacks the storage and cleaning capacity to provide water during the dry season.
+                            To increase the amount of freshwater flowing into
+                            the Everglades from Shark River and Taylor Slough,
+                            a series of bridges and culverts are being constructed
+                            along the Tamiami Trail.
+                            <span class="mobile-hide">That could help revive
+                            southern marshes and Florida Bay. But restoration
+                            still lacks the storage and cleaning capacity to
+                            provide water during the dry season.</span>
                         </p>
+                        <p>7 of 7</p>
                     </div>
                 </div>
-
-                <div class="outer-photo-container">
-                  <div class="inner-photo-gallery-container">
-                    <div class="photo-box">
-                      <div class="img-container-2">
-                        <img src="assets/img/bridge2.jpg" class="d-block responsiveimg" loading="lazy" alt="photo of tamiami trail road in Florida, with water on one side and grasses on the other">
-                      </div>
-                      <div class="map-carousel-legend unconstrained">
-                          <div>
-                              <p>Bridges have been built to raise the Tamiami Trail roadway between Miami and Florida’s southwest coast so that water can flow freely back into the Everglades.</p>
-                              <p>Photo by: Patrick Farrell</p>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
             </article>
 
         </section>

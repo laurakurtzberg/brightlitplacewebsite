@@ -7,7 +7,6 @@ var figure = document.getElementById("mapfigure");
 var article = document.getElementById("articlecontainer");
 var steps = document.querySelectorAll(".step");
 
-
 /*******
     Simple functions to show and hide legend divs
 *****/
@@ -19,31 +18,18 @@ function hideLegend(legendId) {
   document.getElementById(legendId).classList.add('invisible');
 };
 
+/* these next two are just for the mobile version */
+function revealLegend(legendId) {
+  document.getElementById(legendId).style.transform = "translateX(0)";
+}
+
+function sidelineLegend(legendId) {
+  document.getElementById(legendId).style.transform = "translateX(120%)";
+}
+
 /*******
     OPENLAYERS definitions and functions start here
 *****/
-/*
-    -basestyle- styles the historic land classification vector data
-    which will be rendered as a WebGLLayer (see below)
-*/
-const basestyle = {
-    'stroke-color': ['*', ['get', 'COLOR'], [220, 220, 220]],
-    'stroke-width': 3,
-    'stroke-offset': -1,
-    'fill-color': ['*', ['get', 'COLOR'], [255, 255, 255, 0.6]],
-};
-
-
-const oceansLayer = new ol.layer.Vector({
-    source: new ol.source.Vector({
-        url: 'data/oceans.geojson',
-        format: new ol.format.GeoJSON(),
-    }),
-    style: {
-        'fill-color': 'rgba(0,6,7,0.6)',
-    },
-});
-
 
 /*
     Latitude and Longitude locations for use in scrollytelling
@@ -52,7 +38,7 @@ const oceansLayer = new ol.layer.Vector({
 const intialView = ol.proj.fromLonLat([-80.909245, 26.275135]);
 const centerLakeOkeechobee = ol.proj.fromLonLat([-81.104702, 26.881064]);
 const southofLakeOkeechobee = ol.proj.fromLonLat([-80.798088, 26.541511]);
-const treeIslands = ol.proj.fromLonLat([-80.60776, 25.71456]);
+const treeIslands = ol.proj.fromLonLat([-80.6731, 25.7615]);
 const stormwaterTreatment = ol.proj.fromLonLat([-80.41587, 26.6466825]);
 const southView = ol.proj.fromLonLat([-80.6855, 25.7184]);
 
@@ -64,6 +50,49 @@ const view = new ol.View({
 
 /* inializing the map variable so all functions have access */
 var map;
+
+/*
+  fetching the basemap geotiff image, and adding as background
+  to newly initialized ol.Map
+*/
+fetch('./data/basemap2.tif')
+    .then((response) => response.blob())
+    .then((blob) => {
+        const tiffsource = new ol.source.GeoTIFF({
+            sources: [
+                {
+                    blob: blob,
+                },
+              ],
+        });
+
+        map = new ol.Map({
+            target: 'map',
+            controls: [],
+            interactions: [],
+            layers: [
+                new ol.layer.WebGLTile({
+                    source: tiffsource,
+                })
+            ],
+            view: view,
+        });
+
+    });
+
+/*
+   the following 12 const variables are the vector map layers we need,
+   (they don't include the two tif raster layers)
+*/
+const oceansLayer = new ol.layer.Vector({
+    source: new ol.source.Vector({
+        url: 'data/oceans.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'fill-color': 'rgba(0,6,7,0.6)',
+    },
+});
 
 const floridaHistoryLayer = new ol.layer.Vector({
   source: new ol.source.Vector({
@@ -84,28 +113,6 @@ const urbanizedLayer = new ol.layer.Vector({
   opacity: 0,
   style: {
     'fill-color': ['string', ['get', 'colorcode'], '#eee'],
-  },
-});
-
-const oldEvergladesOutline = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/everglades-boundary-before.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'stroke-color': ['string', '#eee'],
-    'stroke-width': 2
-  },
-});
-
-const newEvergladesOutline = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/everglades-boundary-after.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'stroke-color': ['string', '#eee'],
-    'stroke-width': 2
   },
 });
 
@@ -139,7 +146,6 @@ const canalsLayer = new ol.layer.Vector({
     'stroke-width': 2
   },
 });
-
 
 const staLayer = new ol.layer.Vector({
   source: new ol.source.Vector({
@@ -224,7 +230,8 @@ const labelStyle = new ol.style.Style({
     }),
 });
 
-const pointsLayer = new ol.layer.Vector({
+
+const tamiamiTrailLocationsPointLayer = new ol.layer.Vector({
   source: new ol.source.Vector({
     url: 'data/tt-labels.geojson',
     format: new ol.format.GeoJSON(),
@@ -237,66 +244,10 @@ const pointsLayer = new ol.layer.Vector({
     },
 });
 
-/* a function to fade in a layer, courtesy of https://codepen.io/maptastik/pen/qLrdyG */
-function fadeInLayer(lyr, startOpacity, finalOpacity, opacityStep, delay) {
-  let opacity = startOpacity;
-  let timer = setTimeout(function changeOpacity() {
-    if (opacity < finalOpacity) {
-      lyr.setProperties({
-        opacity: opacity
-      });
-      opacity = opacity + opacityStep
-    }
-
-    timer = setTimeout(changeOpacity, delay);
-  }, delay)
-};
-
-/* a function to fade out the layer, based on the previous function above */
-function fadeOutLayer(lyr, startOpacity, finalOpacity, opacityStep, delay) {
-  let opacity = startOpacity;
-  let timer = setTimeout(function changeOpacity() {
-    if (opacity > finalOpacity) {
-      lyr.setProperties({
-        opacity: opacity
-      });
-      opacity = opacity - opacityStep
-    }
-
-    timer = setTimeout(changeOpacity, delay);
-  }, delay)
-};
-
-fetch('./data/basemap2.tif')
-    .then((response) => response.blob())
-    .then((blob) => {
-        const tiffsource = new ol.source.GeoTIFF({
-            sources: [
-                {
-                    blob: blob,
-                },
-              ],
-        });
-
-        map = new ol.Map({
-            target: 'map',
-            controls: [],
-            interactions: [],
-            layers: [
-                new ol.layer.WebGLTile({
-                    source: tiffsource,
-                }),
-                oceansLayer, floridaHistoryLayer, urbanizedLayer
-            ],
-            view: view,
-        });
-
-    });
-
 var treeislandLayer;
 
 function addTreeIslandLayer() {
-    fetch('./data/treeislands.tif')
+    fetch('./data/treeislands2.tif')
         .then((response) => response.blob())
         .then((blob) => {
             const treeislandsource = new ol.source.GeoTIFF({
@@ -315,11 +266,127 @@ function addTreeIslandLayer() {
     });
 }
 
+function isLayerOnMap(layerName) {
+  if (map) {
+    return map.getLayers().getArray().includes(layerName);
+  }
+}
+
+/*
+  list of all vector and raster layers that need to be reset
+  when the map is scrolled (see resetMap function)...
+  these do not include oceansLayer and the raster background, which stay
+*/
+const layerList = [
+  floridaHistoryLayer,
+  historyOkeechobee,
+  urbanizedLayer,
+  canalsLayer,
+  staLayer,
+  sugarcaneLayer,
+  caloosahatcheeLayer,
+  currentOkeechobee,
+  tamiamitrailLayer,
+  tamiamiTrailLocationsPointLayer,
+  taylorsloughLayer,
+  sharksloughLayer,
+  treeislandLayer
+];
+
+const legendAndSourceList = [
+  'historySource',
+  'historyLegend',
+  'urbanizationSource',
+  'urbanizationLegend',
+  'sugarcaneLegend',
+  'sugarcaneSource',
+  'staLegend',
+  'riverSource',
+  'riverLegend',
+  'treeIslandSource',
+  'ttSource'
+];
+
+/*
+   on some moments in the scroll, the map didn't have enough time to remove things
+   before the user moved on to the next scroll, so I made these funcitons
+   to remove everything every time
+*/
+function removeLegendsAndSources() {
+  for (const item of legendAndSourceList) {
+    hideLegend(item);
+  }
+}
+
+function resetMap() {
+  for (const layer of layerList) {
+    if (isLayerOnMap(layer)) {
+      map.removeLayer(layer);
+    }
+  }
+
+  // this one doesn't work in the loop for some reason, adding here
+  map.removeLayer(treeislandLayer);
+
+  removeLegendsAndSources();
+}
+
+
+/*
+    a function to fade in a layer,
+    courtesy of https://codepen.io/maptastik/pen/qLrdyG
+*/
+function fadeInLayer(lyr, startOpacity, finalOpacity, opacityStep, delay) {
+  let opacity = startOpacity;
+  let timer = setTimeout(function changeOpacity() {
+    if (opacity < finalOpacity) {
+      lyr.setProperties({
+        opacity: opacity
+      });
+      opacity = opacity + opacityStep
+    }
+
+    timer = setTimeout(changeOpacity, delay);
+  }, delay)
+};
+
+/*
+    a function to fade out the layer,
+    based on the fadeInLayer function above
+*/
+function fadeOutLayer(lyr, startOpacity, finalOpacity, opacityStep, delay) {
+  let opacity = startOpacity;
+  let timer = setTimeout(function changeOpacity() {
+    if (opacity > finalOpacity) {
+      lyr.setProperties({
+        opacity: opacity
+      });
+      opacity = opacity - opacityStep
+    }
+
+    timer = setTimeout(changeOpacity, delay);
+  }, delay)
+};
+
+
+/*
+  swipe code is based on OpenLayers example found here:
+  https://openlayers.org/en/latest/examples/layer-swipe.html
+*/
+
+/* swipe input element to connect to map layer */
 const swipe = document.getElementById('swipe');
 
-/* Adding in the "before" lake to make it slideable */
-function addSlideableLayer() {
+/*
+  Adding in the "before" and "after" lake layers to make the slidey effect
+  also, adding the Caloosahatchee River layer and corresponding legend & source
+*/
+function addLakeComparisonLayers() {
+    map.addLayer(currentOkeechobee);
     map.addLayer(historyOkeechobee);
+    map.addLayer(caloosahatcheeLayer);
+    showLegend('riverLegend');
+    showLegend('riverSource');
 };
 
 historyOkeechobee.on('prerender', function (event) {
@@ -350,13 +417,16 @@ swipe.addEventListener('input', function () {
   map.render();
 });
 
+
+/*
+   functions to zoom in to certain locations on scroll
+*/
 function zoomInToLakeOkeechobee() {
     view.animate({
         center: centerLakeOkeechobee,
         zoom: 10,
         duration: 2000,
     });
-    addSlideableLayer();
 }
 
 function zoomSouthOfLake() {
@@ -410,51 +480,56 @@ function zoomBackToOverallView() {
   });
 }
 
+
+
 /*
     reset the map to the first stop: the historic view of the Everglades
-    The land classification WebGL layer should fade back in if not there
+    The land classification WebGL layer should fade back in
 */
 function resetMapToHistoricView() {
-    map.addLayer(oldEvergladesOutline);
+    map.addLayer(floridaHistoryLayer);
     fadeInLayer(floridaHistoryLayer, floridaHistoryLayer.getOpacity(), 0.9, 0.02, 2);
+    showLegend('historyLegend');
+    showLegend('historySource');
 }
 
 /*
     Remove the everglade outline layer, but fade out the Florida Historic landuse layer
 */
 function fadeOutHistoryLayer() {
-    map.removeLayer(oldEvergladesOutline);
     fadeOutLayer(floridaHistoryLayer, floridaHistoryLayer.getOpacity(), 0, 0.02, 2);
 }
 
 /*
-  Remove history-related layers
+  Remove history-related layers with fade out
 */
 function removeHistoryLayer() {
-    map.removeLayer(oldEvergladesOutline);
     fadeOutLayer(floridaHistoryLayer, floridaHistoryLayer.getOpacity(), 0, 0.02, 2);
 }
 
 /*
-    add the new vector layers, but fade in the urbanized layer
+    Fade in the urbanized layer
 */
 function fadeInUrbanizedLayer() {
     fadeInLayer(urbanizedLayer, urbanizedLayer.getOpacity(), 0.9, 0.02, 2);
-    map.addLayer(canalsLayer);
-    map.addLayer(newEvergladesOutline);
 }
 
 /*
     add the new vector layers and urbanized layer
 */
-function addUrbanizedLayer() {
-    map.addLayer(urbanizedLayer);
-    map.addLayer(canalsLayer);
-    map.addLayer(newEvergladesOutline);
-}
-
-function addCurrentLake() {
+function addUrbanizedLayers() {
+    if (!isLayerOnMap(urbanizedLayer)) {
+      map.addLayer(urbanizedLayer);
+    }
+    urbanizedLayer.setProperties({
+      opacity: 0
+    });
+    fadeInUrbanizedLayer();
     map.addLayer(currentOkeechobee);
+    map.addLayer(canalsLayer);
+
+    showLegend('urbanizationLegend');
+    showLegend('urbanizationSource');
 }
 
 /*
@@ -462,19 +537,6 @@ function addCurrentLake() {
 */
 function removeUrbanizedLayer() {
     fadeOutLayer(urbanizedLayer, urbanizedLayer.getOpacity(), 0, 0.02, 2);
-
-    map.removeLayer(newEvergladesOutline);
-    map.removeLayer(canalsLayer);
-    map.removeLayer(currentOkeechobee);
-}
-
-/*
-    fade out urbanized layer
-    remove all layers from map except the modern outline of Lake Okeechobee
-*/
-function removeExceptCurrentLake() {
-    map.removeLayer(newEvergladesOutline);
-    map.removeLayer(canalsLayer);
 }
 
 /*
@@ -484,19 +546,8 @@ function addTamiamiTrailLocations() {
     map.addLayer(sharksloughLayer);
     map.addLayer(taylorsloughLayer);
     map.addLayer(tamiamitrailLayer);
-    map.addLayer(pointsLayer);
+    map.addLayer(tamiamiTrailLocationsPointLayer);
 }
-
-/*
-    remove Tamiami Trail (us-41), shark river, and taylor slough geojson layers
-*/
-function removeTamiamiTrailLocations() {
-    map.removeLayer(tamiamitrailLayer);
-    map.removeLayer(sharksloughLayer);
-    map.removeLayer(taylorsloughLayer);
-    map.removeLayer(pointsLayer);
-}
-
 
 /*******
     SCROLLAMA definitions and functions start here
@@ -525,110 +576,51 @@ function handleStepEnter(response) {
      */
     switch (currentIndex) {
         case 0:
-            if (currentDirection === 'up') {
-              removeUrbanizedLayer();
-              hideLegend('urbanizationLegend');
-            }
+            resetMap();
             resetMapToHistoricView();
-
-            showLegend('historyLegend');
-            showLegend('historySource');
             break;
         case 1:
             if(currentDirection === 'down') {
                fadeOutHistoryLayer();
-               addCurrentLake();
-               fadeInUrbanizedLayer();
-
-               hideLegend('historyLegend');
-               hideLegend('historySource');
+               removeLegendsAndSources();
             } else {
+              resetMap();
               zoomBackToOverallView();
-              map.removeLayer(historyOkeechobee);
-              map.removeLayer(caloosahatcheeLayer);
-              addUrbanizedLayer();
-
-              hideLegend('riverLegend');
-              hideLegend('riverSource');
             }
-
-            showLegend('urbanizationLegend');
-            showLegend('urbanizationSource');
+            addUrbanizedLayers();
             break;
         case 2:
-            if (currentDirection === 'up') {
-                map.removeLayer(staLayer);
-                map.removeLayer(sugarcaneLayer);
-
-                hideLegend('sugarcaneLegend');
-                hideLegend('sugarcaneSource');
-            } else {
-              map.removeLayer(urbanizedLayer);
-
-              hideLegend('urbanizationLegend');
-              hideLegend('urbanizationSource');
-            }
-
-            removeExceptCurrentLake();
+            resetMap();
+            addLakeComparisonLayers();
             zoomInToLakeOkeechobee();
-            map.addLayer(caloosahatcheeLayer);
-
-            showLegend('riverLegend');
-            showLegend('riverSource');
             break;
         case 3:
-            if (currentDirection === 'down') {
-                map.removeLayer(historyOkeechobee);
-                map.removeLayer(caloosahatcheeLayer);
-
-                hideLegend('riverLegend');
-                hideLegend('riverSource');
-            }
-            else {
-               map.removeLayer(staLayer);
-               hideLegend('staLegend');
-            }
-
+            resetMap();
             map.addLayer(sugarcaneLayer);
             showLegend('sugarcaneLegend');
             showLegend('sugarcaneSource');
             zoomSouthOfLake();
             break;
         case 4:
-            if (currentDirection === 'down') {
-                map.removeLayer(sugarcaneLayer);
-
-                hideLegend('sugarcaneLegend');
-                hideLegend('sugarcaneSource');
-            } else {
-              zoomSouthOfLake();
-              map.removeLayer(treeislandLayer);
-            }
-
+            resetMap();
+            zoomSouthOfLake();
             map.addLayer(staLayer);
-            showLegend('staLegend');
-            showLegend('riverSource'); // this stop has the same source as the previous river one
 
+            // this stop has the same source as the previous river one
+            showLegend('riverSource');
+            showLegend('staLegend');
             break;
         case 5:
-            if (currentDirection === 'down') {
-              map.removeLayer(staLayer);
-              hideLegend('staLegend');
-              hideLegend('riverSource');
-            } else {
-              removeTamiamiTrailLocations();
-            }
+            resetMap();
             addTreeIslandLayer();
             zoomOnTreeIslands();
-
-            showLegend('treeislandSource');
+            showLegend('treeIslandSource');
             break;
          case 6:
-            map.removeLayer(treeislandLayer);
-            hideLegend('treeislandSource');
-
+            resetMap();
             zoomToSouthView();
             addTamiamiTrailLocations();
+            showLegend('ttSource');
             break;
         default:
             break;

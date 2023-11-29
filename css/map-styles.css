@@ -62,7 +62,7 @@ figure {
 
 .step.is-active p {
     background-color: #64a19d;
-    color: #3b3b3b;
+    color: #222222;
 }
 
 
@@ -73,8 +73,12 @@ figure {
     background-color: #3b3b3b;
 }
 
+.step .other-paragraphs {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 .step .other-paragraphs p {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     font-size: 1.1rem;
     text-align: left;
@@ -82,13 +86,17 @@ figure {
 
 .legend {
   position: fixed;
-  background: rgba(0,0,0,0.8);
-  color: #ddd;
   top: 0;
   right: 0;
+  z-index: 100;
+}
+
+.legend-content {
+  background: rgba(0,0,0,0.7);
+  color: #ddd;
   width: 250px;
-  z-index: 10000;
   padding: 10px;
+  transition: all 1s;
 }
 
 .legend p {
@@ -102,13 +110,14 @@ figure {
 
 .source {
   position: fixed;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,1);
   color: #ddd;
   bottom: 0;
   right: 0;
   z-index: 1000;
-  padding: 10px;
+  padding: 8px;
   height: 40px;
+  font-size: 1rem;
 }
 
 span.colorcube {
@@ -131,14 +140,14 @@ span.colorcube.yellow-border {
 }
 
 .outer-photo-gallery-container {
-  height: 200vh;
+  height: 140vh;
   position: relative;
   margin-bottom: 40vh;
   z-index: 10000;
 }
 
 .outer-photo-container {
-  height: 150vh;
+  height: 100vh;
   position: relative;
   margin-bottom: 0;
   z-index: 10000;
@@ -146,14 +155,16 @@ span.colorcube.yellow-border {
 
 .inner-photo-gallery-container {
   position: sticky;
+  background: rgba(0,0,0,0.7);
+  padding-top: 2%;
   height: 100vh;
   top: 0;
   left: 0;
   right: 0;
 }
 
-.img-container-2 {
-  height: 85vh;
+.video-background {
+  max-height: 80vh;
   background-color: black;
   display: flex;
   align-items: center;
@@ -170,8 +181,7 @@ span.colorcube.yellow-border {
 }
 
 .map-carousel-legend {
-  height: 15vh;
-  padding: 20px;
+  padding: 6px 16px;
   background-color: black;
   color: white;
 }
@@ -190,9 +200,15 @@ span.colorcube.yellow-border {
   line-height: 0.9rem;
 }
 
+#after {
+  text-align: right;
+}
+
 .slider-labels {
   display: flex;
   justify-content: space-between;
+  width: 94%;
+  margin: auto;
   margin-bottom: 20px;
 }
 
@@ -224,20 +240,15 @@ img.responsiveimg {
   height: 2.5rem;
 }
 
+.mobile-hide {
+  display: inline;
+}
 
-@media screen and (max-width: 650px) {
-  #legend1 {
-    display: none;
-  }
+.mobile-only {
+  display: none;
+}
 
-  div.step {
-    margin: auto;
-  }
-
-  #articlecontainer {
-    margin: auto;
-  }
-
+@media screen and (max-width: 1000px) {
   video.responsivevideo {
     width: auto;
     height: 100%;
@@ -246,5 +257,101 @@ img.responsiveimg {
   img.responsiveimg {
     width: auto;
     height: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .step {
+    margin: auto;
+    width: 85%;
+    height: 1200px;
+  }
+
+  .step p {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
+
+  .step .other-paragraphs p {
+    font-size: 0.9rem;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    padding: 1rem;
+  }
+
+  .source {
+    height: auto;
+  }
+
+  .source p {
+    font-size: 0.8rem;
+    background-color: rgba(0,0,0,1);
+    margin-bottom: 0;
+  }
+
+  .legend-content {
+    transform: translateX(110%);
+    font-size: 0.8rem;
+    background-color: rgba(0,0,0,1);
+    width: auto;
+    max-width: 210px;
+  }
+
+  .legend-title {
+    margin: 0;
+  }
+
+  span.colorcube {
+    width: 10px;
+    height: 10px;
+  }
+
+  #articlecontainer {
+    z-index: 10000;
+    width: 85%;
+    margin: auto;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline;
+  }
+
+  .mobile-only.minibutton {
+    width: 40px;
+    color: white;
+    height: 40px;
+    border: 2px solid white;
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #222;
+    float: right;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .mobile-only.miniminibutton {
+    width: 35px;
+    color: white;
+    height: 35px;
+    border: 2px solid white;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #222;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
   }
 }
