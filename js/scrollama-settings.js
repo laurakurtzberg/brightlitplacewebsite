@@ -48,38 +48,6 @@ const view = new ol.View({
     zoom: 9,
 });
 
-/* inializing the map variable so all functions have access */
-var map;
-
-/*
-  fetching the basemap geotiff image, and adding as background
-  to newly initialized ol.Map
-*/
-fetch('./data/basemap2.tif')
-    .then((response) => response.blob())
-    .then((blob) => {
-        const tiffsource = new ol.source.GeoTIFF({
-            sources: [
-                {
-                    blob: blob,
-                },
-              ],
-        });
-
-        map = new ol.Map({
-            target: 'map',
-            controls: [],
-            interactions: [],
-            layers: [
-                new ol.layer.WebGLTile({
-                    source: tiffsource,
-                })
-            ],
-            view: view,
-        });
-
-    });
-
 /*
    the following 12 const variables are the vector map layers we need,
    (they don't include the two tif raster layers)
@@ -243,6 +211,39 @@ const tamiamiTrailLocationsPointLayer = new ol.layer.Vector({
       return labelStyle;
     },
 });
+
+/* inializing the map variable so all functions have access */
+var map;
+
+/*
+  fetching the basemap geotiff image, and adding as background
+  to newly initialized ol.Map
+*/
+fetch('./data/basemap2.tif')
+    .then((response) => response.blob())
+    .then((blob) => {
+        const tiffsource = new ol.source.GeoTIFF({
+            sources: [
+                {
+                    blob: blob,
+                },
+              ],
+        });
+
+        map = new ol.Map({
+            target: 'map',
+            controls: [],
+            interactions: [],
+            layers: [
+                new ol.layer.WebGLTile({
+                    source: tiffsource,
+                }),
+                oceansLayer
+            ],
+            view: view,
+        });
+
+    });
 
 var treeislandLayer;
 
