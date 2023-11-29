@@ -35,16 +35,16 @@ function sidelineLegend(legendId) {
     Latitude and Longitude locations for use in scrollytelling
     when animating the map view
 */
-const intialView = ol.proj.fromLonLat([-80.909245, 26.275135]);
+const initialView = ol.proj.fromLonLat([-80.909245, 26.275135]);
+const initialViewMobile = ol.proj.fromLonLat([-80.875797, 26.051171]);
 const centerLakeOkeechobee = ol.proj.fromLonLat([-81.104702, 26.881064]);
 const southofLakeOkeechobee = ol.proj.fromLonLat([-80.798088, 26.541511]);
 const treeIslands = ol.proj.fromLonLat([-80.6731, 25.7615]);
-const stormwaterTreatment = ol.proj.fromLonLat([-80.41587, 26.6466825]);
 const southView = ol.proj.fromLonLat([-80.6855, 25.7184]);
 
 /* initializing the OpenLayers map view */
 const view = new ol.View({
-    center: intialView,
+    center: initialView,
     zoom: 9,
 });
 
@@ -421,27 +421,27 @@ swipe.addEventListener('input', function () {
 /*
    functions to zoom in to certain locations on scroll
 */
-function zoomInToLakeOkeechobee() {
+function zoomInToLakeOkeechobee(currentScreenWidth) {
+  if (currentScreenWidth < 1000) {
+    view.animate({
+        center: initialView,
+        zoom: 9,
+        duration: 1900,
+    });
+  } else {
     view.animate({
         center: centerLakeOkeechobee,
         zoom: 10,
-        duration: 2000,
+        duration: 1900,
     });
+  }
 }
 
 function zoomSouthOfLake() {
     view.animate({
         center: southofLakeOkeechobee,
         zoom: 9.5,
-        duration: 2000,
-    });
-}
-
-function zoomSouthOfLake() {
-    view.animate({
-        center: southofLakeOkeechobee,
-        zoom: 9.5,
-        duration: 2000,
+        duration: 1900,
     });
 }
 
@@ -449,61 +449,76 @@ function zoomOnTreeIslands() {
     view.animate({
         center: treeIslands,
         zoom: 11,
-        duration: 2000,
+        duration: 1900,
     });
 }
 
-function zoomOnStormwaterTreatment() {
+function zoomOnStormwaterTreatment(currentScreenWidth) {
+  if (currentScreenWidth < 1000) {
     view.animate({
-        center: stormwaterTreatment,
-        zoom: 13,
-        duration: 2000,
+        center: southofLakeOkeechobee,
+        zoom: 9,
+        duration: 1900,
     });
+  } else {
+    view.animate({
+        center: southofLakeOkeechobee,
+        zoom: 9.5,
+        duration: 1900,
+    });
+  }
 }
 
-function zoomToSouthView() {
+function zoomToSouthView(currentScreenWidth) {
+  if (currentScreenWidth < 1000) {
+    view.animate({
+      center: southView,
+      zoom: 9.5,
+      duration: 1900,
+    });
+  }
   view.animate({
     center: southView,
     zoom: 10,
-    duration: 1800,
+    duration: 1900,
   });
 }
 
 /*
   zoom back to starting zoom and center
 */
-function zoomBackToOverallView() {
+function zoomBackToOverallView(currentScreenWidth) {
+  if (currentScreenWidth < 1000) {
+    view.animate({
+        center: initialViewMobile,
+        zoom: 8.5,
+        duration: 1900,
+    });
+  }
   view.animate({
-      center: intialView,
+      center: initialView,
       zoom: 9,
-      duration: 2000,
+      duration: 1900,
   });
 }
-
 
 
 /*
     reset the map to the first stop: the historic view of the Everglades
     The land classification WebGL layer should fade back in
 */
-function resetMapToHistoricView() {
+function resetMapToHistoricView(currentScreenWidth) {
     map.addLayer(floridaHistoryLayer);
     fadeInLayer(floridaHistoryLayer, floridaHistoryLayer.getOpacity(), 0.9, 0.02, 2);
     showLegend('historyLegend');
     showLegend('historySource');
+    zoomBackToOverallView(currentScreenWidth);
 }
 
 /*
     Remove the everglade outline layer, but fade out the Florida Historic landuse layer
 */
 function fadeOutHistoryLayer() {
-    fadeOutLayer(floridaHistoryLayer, floridaHistoryLayer.getOpacity(), 0, 0.02, 2);
-}
-
-/*
-  Remove history-related layers with fade out
-*/
-function removeHistoryLayer() {
     fadeOutLayer(floridaHistoryLayer, floridaHistoryLayer.getOpacity(), 0, 0.02, 2);
 }
 
@@ -532,12 +547,6 @@ function addUrbanizedLayers() {
     showLegend('urbanizationSource');
 }
 
-/*
-    fade out the urbanized layer first, then remove related layers
-*/
-function removeUrbanizedLayer() {
-    fadeOutLayer(urbanizedLayer, urbanizedLayer.getOpacity(), 0, 0.02, 2);
-}
 
 /*
     add Tamiami Trail (us-41), shark river, and taylor slough geojson layers
@@ -560,6 +569,8 @@ function handleStepEnter(response) {
     let currentIndex = response.index;
     let currentDirection = response.direction;
 
+    let currentScreenWidth = window.screen.width;
+
     steps.forEach(function (step, i) {
         if (i !== currentIndex) {
             if (step.classList.contains("is-active")) {
@@ -573,11 +584,12 @@ function handleStepEnter(response) {
     /*
       This switch updates the map based on the scroll step.
       Note the fade in / fade out effect between step 1 (case 0) and step 2 (case 1)
+      If the reader is on a smaller screen, the zoom functions change
      */
     switch (currentIndex) {
         case 0:
             resetMap();
-            resetMapToHistoricView();
+            resetMapToHistoricView(currentScreenWidth);
             break;
         case 1:
             if(currentDirection === 'down') {
@@ -585,25 +597,25 @@ function handleStepEnter(response) {
                removeLegendsAndSources();
             } else {
               resetMap();
-              zoomBackToOverallView();
+              zoomBackToOverallView(currentScreenWidth);
             }
             addUrbanizedLayers();
             break;
         case 2:
             resetMap();
             addLakeComparisonLayers();
-            zoomInToLakeOkeechobee();
+            zoomInToLakeOkeechobee(currentScreenWidth);
             break;
         case 3:
             resetMap();
             map.addLayer(sugarcaneLayer);
             showLegend('sugarcaneLegend');
             showLegend('sugarcaneSource');
-            zoomSouthOfLake();
+            zoomSouthOfLake(currentScreenWidth);
             break;
         case 4:
             resetMap();
-            zoomSouthOfLake();
+            zoomOnStormwaterTreatment(currentScreenWidth);
             map.addLayer(staLayer);
 
             // this stop has the same source as the previous river one
@@ -613,12 +625,12 @@ function handleStepEnter(response) {
         case 5:
             resetMap();
             addTreeIslandLayer();
-            zoomOnTreeIslands();
+            zoomOnTreeIslands(currentScreenWidth);
             showLegend('treeIslandSource');
             break;
          case 6:
             resetMap();
-            zoomToSouthView();
+            zoomToSouthView(currentScreenWidth);
             addTamiamiTrailLocations();
             showLegend('ttSource');
             break;
