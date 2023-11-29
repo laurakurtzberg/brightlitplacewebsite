@@ -45,6 +45,14 @@ figure {
     z-index: 0;
 }
 
+.about-section p {
+    margin-bottom: 2rem;
+}
+
+.margin-40 {
+    margin-bottom: 3rem;
+}
+
 .step {
     margin: 0 auto 2rem 1rem;
     max-width: 25rem;
@@ -82,6 +90,13 @@ figure {
     color: #fff;
     font-size: 1.1rem;
     text-align: left;
+}
+
+.down-button {
+  font-size: 1.7rem;
+  float: right;
+  margin-top: -42px;
+  margin-right: 10px;
 }
 
 .legend {
