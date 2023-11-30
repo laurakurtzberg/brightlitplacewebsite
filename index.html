@@ -51,11 +51,13 @@
         </div>
     </nav>
     <!-- Masthead-->
-    <div class="video-background-holder">
-        <div class="video-background-overlay"></div>
-        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-            <source src="assets/img/background-video.mp4" type="video/mp4">
-        </video>
+    <div class="video-holder-for-the-holder">
+        <div class="video-background-holder">
+            <div class="video-background-overlay"></div>
+            <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                <source src="assets/img/background-video.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="video-background-content container h-100">
             <div class="d-flex h-100 text-center align-items-center">
                 <div class="w-100 text-white">
@@ -82,8 +84,8 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <p class="text-white-50">
-                            In 2000, the U.S. set out on one of the most ambitious environmental projects ever attempted: to reconnect the Everglades and make it function like it did a century ago. The plan could have given Florida a 20-year head start on climate change, but that didn't happen.
-                            <a href="#step1">Scroll down</a> to learn more about the Everglades through a series of maps.
+                        In 2000, the U.S. set out on one of the most ambitious environmental projects ever attempted: to reconnect the Everglades and make it function like it did a century ago. The plan could have given Florida a 20-year head start on climate change, but that didn't happen.
+                        <a href="#step1">Scroll down</a> to learn more about the Everglades through a series of maps.
                     </p>
                     <a class="btn btn-primary w-50 margin-40" href="https://brightlitplace.org/#episodes">Listen to Podcast Episodes</a>
                 </div>
@@ -91,114 +93,114 @@
         </section>
 
         <section class="legends">
-          <div id="historyLegend" class="legend invisible">
-            <div class="mobile-only minibutton" onclick="revealLegend('historyLegend-content')"><span class="ion-ios-information"></span></div>
-            <div class="legend-content" id="historyLegend-content" onclick="sidelineLegend('historyLegend-content')">
-              <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
-              <p class="legend-title">Florida in the 1940s</p>
-              <div>
-                <span class="colorcube" style="background-color: #111f25"></span> <span>Freshwater Marshes</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #14250c"></span> <span>Cypress Forests</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #1b3328"></span> <span>Saltwater Marshes and Wet Praries</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #35645a"></span> <span>Sawgrass Marshes</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #1d3c45"></span> <span>Slough, Ponds, Lakes</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #588e62"></span> <span>Miami Pine Rockland</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #76864f"></span> <span>Pine Flatwood Forests</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #264630"></span> <span>Willow and Elderberry</span>
-              </div>
-              <div>
-                <span class="colorcube" style="background-color: #6aa159"></span> <span>Custard Apple Zone</span>
-              </div>
+            <div id="historyLegend" class="legend invisible">
+                <div class="mobile-only minibutton" onclick="revealLegend('historyLegend-content')"><span class="ion-ios-information"></span></div>
+                <div class="legend-content" id="historyLegend-content" onclick="sidelineLegend('historyLegend-content')">
+                    <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
+                    <p class="legend-title">Florida in the 1940s</p>
+                    <div>
+                        <span class="colorcube" style="background-color: #111f25"></span> <span>Freshwater Marshes</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #14250c"></span> <span>Cypress Forests</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #1b3328"></span> <span>Saltwater Marshes and Wet Praries</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #35645a"></span> <span>Sawgrass Marshes</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #1d3c45"></span> <span>Slough, Ponds, Lakes</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #588e62"></span> <span>Miami Pine Rockland</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #76864f"></span> <span>Pine Flatwood Forests</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #264630"></span> <span>Willow and Elderberry</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #6aa159"></span> <span>Custard Apple Zone</span>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div id="historySource" class="source">
-            <p>Source: South Florida Management District | Davis Vegetation Map</p>
-          </div>
-
-          <div id="urbanizationSource" class="source">
-            <p>Source: Florida Department of Environmental Protection | Land Use</p>
-          </div>
-
-          <div id="urbanizationLegend" class="legend invisible">
-            <div class="mobile-only minibutton" onclick="revealLegend('urbanizationLegend-content')"><span class="ion-ios-information"></span></div>
-            <div class="legend-content" id="urbanizationLegend-content" onclick="sidelineLegend('urbanizationLegend-content')">
-            <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
-            <p class="legend-title">Urbanization and Agriculture, Present Day</p>
-            <div>
-              <span class="colorcube" style="background-color: #b4b4b4"></span> <span>Urban and Built Up</span>
+            <div id="historySource" class="source">
+                <p>Source: South Florida Management District | Davis Vegetation Map</p>
             </div>
-            <div>
-              <span class="colorcube" style="background-color: #434338"></span> <span>Agriculture</span>
+
+            <div id="urbanizationSource" class="source">
+                <p>Source: Florida Department of Environmental Protection | Land Use</p>
             </div>
-            <div>
-              <span class="colorcube" style="background-color: #73645e"></span> <span>Rangeland</span>
+
+            <div id="urbanizationLegend" class="legend invisible">
+                <div class="mobile-only minibutton" onclick="revealLegend('urbanizationLegend-content')"><span class="ion-ios-information"></span></div>
+                <div class="legend-content" id="urbanizationLegend-content" onclick="sidelineLegend('urbanizationLegend-content')">
+                    <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
+                    <p class="legend-title">Urbanization and Agriculture, Present Day</p>
+                    <div>
+                        <span class="colorcube" style="background-color: #b4b4b4"></span> <span>Urban and Built Up</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #434338"></span> <span>Agriculture</span>
+                    </div>
+                    <div>
+                        <span class="colorcube" style="background-color: #73645e"></span> <span>Rangeland</span>
+                    </div>
+                    <div>
+                        <span class="legendline" style="background-color: #e77148"></span> <span>Regional Drainage Canals</span>
+                    </div>
+                </div>
             </div>
-            <div>
-              <span class="legendline" style="background-color: #e77148"></span> <span>Regional Drainage Canals</span>
+
+            <div id="riverLegend" class="legend invisible">
+                <div class="mobile-only minibutton" onclick="revealLegend('riverLegend-content')"><span class="ion-ios-information"></span></div>
+                <div class="legend-content" id="riverLegend-content" onclick="sidelineLegend('riverLegend-content')">
+                    <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
+                    <div>
+                        <span class="legendline" style="background-color: #47efe7"></span> <span>Caloosahatchee River and Canal</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
 
-          <div id="riverLegend" class="legend invisible">
-            <div class="mobile-only minibutton" onclick="revealLegend('riverLegend-content')"><span class="ion-ios-information"></span></div>
-            <div class="legend-content" id="riverLegend-content" onclick="sidelineLegend('riverLegend-content')">
-            <div class="mobile-only miniminibutton"><span class="ion-ios-close"></span></div>
-            <div>
-              <span class="legendline" style="background-color: #47efe7"></span> <span>Caloosahatchee River and Canal</span>
+            <div id="riverSource" class="source invisible">
+                <p>Source: South Florida Management District</p>
             </div>
-          </div>
-          </div>
 
-          <div id="riverSource" class="source invisible">
-            <p>Source: South Florida Management District</p>
-          </div>
-
-          <div id="sugarcaneSource" class="source invisible">
-            <p>Source: USDA National Agricultural Statistics Service | 2022</p>
-          </div>
-
-          <div id="sugarcaneLegend" class="legend invisible">
-            <div class="mobile-only minibutton" onclick="revealLegend('sugarcaneLegend-content')"><span class="ion-ios-information"></span></div>
-            <div class="legend-content" id="sugarcaneLegend-content">
-            <div class="mobile-only miniminibutton" onclick="sidelineLegend('sugarcaneLegend-content')"><span class="ion-ios-close"></span></div>
-            <div>
-              <span class="colorcube" style="background-color: #eadfb9"></span> <span>Sugarcane Crop Cover</span>
+            <div id="sugarcaneSource" class="source invisible">
+                <p>Source: USDA National Agricultural Statistics Service | 2022</p>
             </div>
-          </div>
-          </div>
 
-          <div id="staLegend" class="legend invisible">
-            <div class="mobile-only minibutton" onclick="revealLegend('staLegend-content')"><span class="ion-ios-information"></span></div>
-            <div class="legend-content" id="staLegend-content">
-            <div class="mobile-only miniminibutton" onclick="sidelineLegend('staLegend-content')"><span class="ion-ios-close"></span></div>
-            <div>
-              <span class="colorcube yellow-border" style="background-color: black"></span> <span>Stormwater Treatment Areas</span>
+            <div id="sugarcaneLegend" class="legend invisible">
+                <div class="mobile-only minibutton" onclick="revealLegend('sugarcaneLegend-content')"><span class="ion-ios-information"></span></div>
+                <div class="legend-content" id="sugarcaneLegend-content">
+                    <div class="mobile-only miniminibutton" onclick="sidelineLegend('sugarcaneLegend-content')"><span class="ion-ios-close"></span></div>
+                    <div>
+                        <span class="colorcube" style="background-color: #eadfb9"></span> <span>Sugarcane Crop Cover</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
 
-          <div id="treeIslandSource" class="source invisible">
-            <p>Source: USGS EROS Center | Landsat 5 image of tree islands in 1985</p>
-          </div>
+            <div id="staLegend" class="legend invisible">
+                <div class="mobile-only minibutton" onclick="revealLegend('staLegend-content')"><span class="ion-ios-information"></span></div>
+                <div class="legend-content" id="staLegend-content">
+                    <div class="mobile-only miniminibutton" onclick="sidelineLegend('staLegend-content')"><span class="ion-ios-close"></span></div>
+                    <div>
+                        <span class="colorcube yellow-border" style="background-color: black"></span> <span>Stormwater Treatment Areas</span>
+                    </div>
+                </div>
+            </div>
 
-          <div id="ttSource" class="source invisible">
-            <p>Source: Open Street Map</p>
-          </div>
+            <div id="treeIslandSource" class="source invisible">
+                <p>Source: USGS EROS Center | Landsat 5 image of tree islands in 1985</p>
+            </div>
+
+            <div id="ttSource" class="source invisible">
+                <p>Source: Open Street Map</p>
+            </div>
 
         </section>
 
@@ -232,8 +234,8 @@
                             What remains of the wetlands outside the park is
                             now used for storage and flood control<span class="mobile-only">.</span>
                             <span class="mobile-hide">, and is in
-                            danger of shrinking even more due to expanding
-                            development, sea rise and peat soil collapse.
+                                danger of shrinking even more due to expanding
+                                development, sea rise and peat soil collapse.
                             </span>
                         </p>
                         <p>2 of 7</p><a href="#step3" class="down-button ion-ios-arrow-down"></a>
@@ -245,7 +247,7 @@
                     <div class="other-paragraphs">
                         <input id="swipe" type="range" value=0 style="width: 100%">
                         <div class="slider-labels">
-                          <span id="before">Historic High <br>Water Levels</span> <span id="after">Post-drainage <br>Lake Size</span>
+                            <span id="before">Historic High <br>Water Levels</span> <span id="after">Post-drainage <br>Lake Size</span>
                         </div>
                         <p>
                             Lake Okeechobee provides much of the freshwater to
@@ -255,9 +257,9 @@
                             canal connecting the Caloosahatchee River to the
                             lake.
                             <span class="mobile-hide"> That opened up commerce,
-                              but also set the stage for decades of dredging
-                              and filling that scarred the swamp and hampered
-                              its ability to keep wetlands healthy.</span>
+                                but also set the stage for decades of dredging
+                                and filling that scarred the swamp and hampered
+                                its ability to keep wetlands healthy.</span>
                         </p>
                         <p>3 of 7</p><a href="#step4" class="down-button ion-ios-arrow-down"></a>
                     </div>
@@ -287,32 +289,32 @@
                             led the state to build a <a href="episode3.html">series of treatment marshes</a>.
                             The marshes also provide flood control.
                             <span class="mobile-hide">So far,
-                            only one set of treatment marshes is on target to
-                            meet strict phosphorus limits, with the deadline
-                            to begin complying just two years away.</span>
+                                only one set of treatment marshes is on target to
+                                meet strict phosphorus limits, with the deadline
+                                to begin complying just two years away.</span>
                         </p>
                         <p>5 of 7</p><a href="#step6" class="down-button ion-ios-arrow-down"></a>
                     </div>
                 </div>
 
                 <div class="outer-photo-gallery-container">
-                  <div class="inner-photo-gallery-container">
-                    <div class="video-background">
-                        <video class="responsivevideo" width="100%" autoplay loop muted>
-                          <source src="assets/img/riverofgrass.mp4" type="video/mp4">
-                        </video>
-                     </div>
-                     <div class="map-carousel-legend">
-                        <div>
-                            <p class="image-caption">An airboat moves through
-                              cattails and other aquatic vegetation in a
-                              stormwater treatment area.</p>
-                            <p>Video by: Jenny Staletovich</p>
-                            <a href="#step6" class="down-button ion-ios-arrow-down"></a>
+                    <div class="inner-photo-gallery-container">
+                        <div class="video-background">
+                            <video class="responsivevideo" width="100%" aplaysinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                                <source src="assets/img/riverofgrass.mp4" type="video/mp4">
+                            </video>
                         </div>
-                      </div>
+                        <div class="map-carousel-legend">
+                            <div>
+                                <p class="image-caption">An airboat moves through
+                                    cattails and other aquatic vegetation in a
+                                    stormwater treatment area.</p>
+                                <p>Video by: Jenny Staletovich</p>
+                                <a href="#step6" class="down-button ion-ios-arrow-down"></a>
+                            </div>
+                        </div>
                     </div>
-              </div>
+                </div>
 
                 <div class="step" data-step="6" style="height: 1000px;" id="step6">
                     <p>Tree Islands</p>
@@ -338,9 +340,9 @@
                             a series of bridges and culverts are being constructed
                             along the Tamiami Trail.
                             <span class="mobile-hide">That could help revive
-                            southern marshes and Florida Bay. But restoration
-                            still lacks the storage and cleaning capacity to
-                            provide water during the dry season.</span>
+                                southern marshes and Florida Bay. But restoration
+                                still lacks the storage and cleaning capacity to
+                                provide water during the dry season.</span>
                         </p>
                         <p>7 of 7</p>
                     </div>
@@ -439,5 +441,4 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
-</html>
+</body></html>
