@@ -12,6 +12,7 @@ body {
     width: 100%;
     overflow: hidden;
     position: relative;
+    z-index: 10000;
 }
 
 .video-background-holder {
@@ -19,10 +20,8 @@ body {
     background-color: black;
     height: calc(100vh - 72px);
     min-height: 25rem;
-    width: 120%;
     overflow: hidden;
     z-index: 1000;
-    text-align: left;
 }
 
 .video-background-holder video {
@@ -38,6 +37,18 @@ body {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
+}
+
+@media screen and (max-width: 600px) {
+    .video-background-holder video {
+        min-width: 110%;
+        -webkit-transform: translateX(-40%) translateY(-50%);
+        transform: translateX(-40%) translateY(-50%);
+    }
+    
+    #mainNav:not(.navbar-shrink) {
+        margin-top: 0;
+    }
 }
 
 .video-background-content {

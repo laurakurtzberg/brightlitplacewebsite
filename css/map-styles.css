@@ -154,23 +154,35 @@ span.colorcube.yellow-border {
   border: 2px solid #f9e613;
 }
 
-.outer-photo-gallery-container {
+.outer-video-container {
   height: 140vh;
   position: relative;
   margin-bottom: 40vh;
   z-index: 10000;
-    width: 120%;
-    margin-left: -10%;
+  width: 100%;
+  margin-left: 0;
 }
 
-.outer-photo-container {
+.inner-video-container {
+  position: sticky;
+  background: rgba(0,0,0,0.7);
+  padding-top: 2%;
   height: 100vh;
-  position: relative;
-  margin-bottom: 0;
-  z-index: 10000;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.inner-photo-gallery-container {
+.outer-image-container {
+  height: 140vh;
+  position: relative;
+  margin-bottom: 40vh;
+  z-index: 10000;
+  width: 100%;
+  margin-left: 0;
+}
+
+.inner-image-container {
   position: sticky;
   background: rgba(0,0,0,0.7);
   padding-top: 2%;
@@ -197,16 +209,32 @@ span.colorcube.yellow-border {
   width: 100%;
 }
 
-.map-carousel-legend {
+.map-video-legend {
   padding: 6px 16px;
   background-color: black;
   color: white;
 }
 
-.map-carousel-legend.unconstrained {
+.map-image-legend {
+  padding: 6px 16px;
+  background-color: black;
+  color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.map-video-legend.unconstrained {
   min-height: 15vh;
   height: auto;
 }
+
+.map-image-legend.unconstrained {
+  min-height: 15vh;
+  height: auto;
+}
+
 
 .invisible {
   display: none;
@@ -335,13 +363,16 @@ input[type='range']::-moz-range-thumb {
 
 .full-size-image {
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
 }
+
 #lakeO {
    background-image: url('../assets/img/lake-o-birder-scrollytelling.jpg');
 }
@@ -365,7 +396,6 @@ input[type='range']::-moz-range-thumb {
 
 
 @media screen and (max-width: 600px) {
-    
   .step {
     margin: auto;
     width: 85%;
@@ -460,4 +490,14 @@ input[type='range']::-moz-range-thumb {
     top: 8px;
     right: 8px;
   }
+    
+    .outer-image-container {
+        width: 120%;
+        margin-left: -10%;
+    }
+    
+    .outer-video-container {
+        width: 120%;
+        margin-left: -10%;
+    }
 }
