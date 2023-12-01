@@ -333,6 +333,23 @@ input[type='range']::-moz-range-thumb {
     padding-top: 10px;
 }
 
+.full-size-image {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#lakeO {
+   background-image: url('../assets/img/lake-o-birder-scrollytelling.jpg');
+}
+
+#lakeO {
+   background-image: url('../assets/img/lake-o-birder-scrollytelling.jpg'); 
+}
+
 @media screen and (max-width: 1000px) {
   video.responsivevideo {
     width: auto;

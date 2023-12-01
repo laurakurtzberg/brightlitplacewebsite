@@ -434,7 +434,6 @@ swipe.addEventListener('input', function () {
 */
 function zoomInToLakeOkeechobee(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
-        console.log("LAKE OKEE");
         view.animate({
             center: initialView,
             zoom: 9,
