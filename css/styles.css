@@ -12987,6 +12987,8 @@ body {
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
+    position: relative;
+    z-index: 1000;
 }
 
 .signup-section .form-signup input {
@@ -13048,6 +13050,11 @@ body {
 
 .footer {
     padding: 5rem 0;
+}
+
+footer {
+    position: relative;
+    z-index: 1000;
 }
 
 /*!
