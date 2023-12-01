@@ -6,25 +6,26 @@ var scrolly = document.getElementById("scrolly");
 var figure = document.getElementById("mapfigure");
 var article = document.getElementById("articlecontainer");
 var steps = document.querySelectorAll(".step");
+var startingScreenWidth = window.screen.width;
 
 /*******
     Simple functions to show and hide legend divs
 *****/
 function showLegend(legendId) {
-  document.getElementById(legendId).classList.remove('invisible');
+    document.getElementById(legendId).classList.remove('invisible');
 };
 
 function hideLegend(legendId) {
-  document.getElementById(legendId).classList.add('invisible');
+    document.getElementById(legendId).classList.add('invisible');
 };
 
 /* these next two are just for the mobile version */
 function revealLegend(legendId) {
-  document.getElementById(legendId).style.transform = "translateX(0)";
+    document.getElementById(legendId).style.transform = "translateX(0)";
 }
 
 function sidelineLegend(legendId) {
-  document.getElementById(legendId).style.transform = "translateX(120%)";
+    document.getElementById(legendId).style.transform = "translateX(120%)";
 }
 
 /*******
@@ -36,16 +37,25 @@ function sidelineLegend(legendId) {
     when animating the map view
 */
 const initialView = ol.proj.fromLonLat([-80.909245, 26.275135]);
-const initialViewMobile = ol.proj.fromLonLat([-80.875797, 26.051171]);
+const initialViewMobile = ol.proj.fromLonLat([-80.98998, 25.69]);
 const centerLakeOkeechobee = ol.proj.fromLonLat([-81.104702, 26.881064]);
 const southofLakeOkeechobee = ol.proj.fromLonLat([-80.798088, 26.541511]);
+const southofLakeOMobile = ol.proj.fromLonLat([-80.799332, 26.268767]);
+const staView = ol.proj.fromLonLat([-80.582250,26.583095]);
+const staViewMobile = ol.proj.fromLonLat([-80.571425, 26.3]);
 const treeIslands = ol.proj.fromLonLat([-80.6731, 25.7615]);
+const treeIslandsMobile = ol.proj.fromLonLat([-80.6731, 25.45]);
 const southView = ol.proj.fromLonLat([-80.6855, 25.7184]);
 
 /* initializing the OpenLayers map view */
 const view = new ol.View({
     center: initialView,
     zoom: 9,
+});
+
+const mobileView = new ol.View({
+    center: initialViewMobile,
+    zoom: 8,
 });
 
 /*
@@ -63,152 +73,152 @@ const oceansLayer = new ol.layer.Vector({
 });
 
 const floridaHistoryLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/florida-history-landcover.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  opacity: 0,
-  style: {
-    'fill-color': ['string', ['get', 'colorcode'], '#eee'],
-  },
+    source: new ol.source.Vector({
+        url: 'data/florida-history-landcover.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    opacity: 0,
+    style: {
+        'fill-color': ['string', ['get', 'colorcode'], '#eee'],
+    },
 });
 
 const urbanizedLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/agriculture-and-urban.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  opacity: 0,
-  style: {
-    'fill-color': ['string', ['get', 'colorcode'], '#eee'],
-  },
+    source: new ol.source.Vector({
+        url: 'data/agriculture-and-urban.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    opacity: 0,
+    style: {
+        'fill-color': ['string', ['get', 'colorcode'], '#eee'],
+    },
 });
 
 const historyOkeechobee = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/lake-okeechobee-before.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'fill-color': ['string', '#03031a']
-  },
+    source: new ol.source.Vector({
+        url: 'data/lake-okeechobee-before.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'fill-color': ['string', '#03031a']
+    },
 });
 
 const currentOkeechobee = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/lake-okeechobee-after.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'fill-color': ['string', '#03031a']
-  },
+    source: new ol.source.Vector({
+        url: 'data/lake-okeechobee-after.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'fill-color': ['string', '#03031a']
+    },
 });
 
 const canalsLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/canals.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'stroke-color': ['string', ['get', 'colorcode'], '#eee'],
-    'stroke-width': 2
-  },
+    source: new ol.source.Vector({
+        url: 'data/canals.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'stroke-color': ['string', ['get', 'colorcode'], '#eee'],
+        'stroke-width': 2
+    },
 });
 
 const staLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/fixed-sta-boundaries.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'fill-color': ['string', 'rgba(0,0,0,0.5)'],
-    'stroke-color': ['string', '#f9e613'],
-    'stroke-width': 2
-  },
+    source: new ol.source.Vector({
+        url: 'data/fixed-sta-boundaries.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'fill-color': ['string', 'rgba(0,0,0,0.5)'],
+        'stroke-color': ['string', '#f9e613'],
+        'stroke-width': 2
+    },
 });
 
 const sugarcaneLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/simplified-sugarcane.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'fill-color': ['string', 'rgba(234,223,185,0.5)']
-  },
+    source: new ol.source.Vector({
+        url: 'data/simplified-sugarcane.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'fill-color': ['string', 'rgba(234,223,185,0.5)']
+    },
 });
 
 const caloosahatcheeLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/caloosahatchee.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'stroke-color': ['string', '#47efe7'],
-    'stroke-width': 2
-  },
+    source: new ol.source.Vector({
+        url: 'data/caloosahatchee.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'stroke-color': ['string', '#47efe7'],
+        'stroke-width': 2
+    },
 });
 
 const tamiamitrailLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/tamiamitrail.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: {
-    'stroke-color': ['string', '#e77148'],
-    'stroke-width': 2
-  },
+    source: new ol.source.Vector({
+        url: 'data/tamiamitrail.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: {
+        'stroke-color': ['string', '#e77148'],
+        'stroke-width': 2
+    },
 });
 
 const sloughPolygonStyle = new ol.style.Style({
-  fill: new ol.style.Fill({
-    color: 'rgba(29, 60, 69, 0.8)',
-  }),
-  stroke: new ol.style.Stroke({
-    color: '#319FD3',
-    width: 1,
-  }),
+    fill: new ol.style.Fill({
+        color: 'rgba(29, 60, 69, 0.8)',
+    }),
+    stroke: new ol.style.Stroke({
+        color: '#319FD3',
+        width: 1,
+    }),
 });
 
 const sharksloughLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/shark-river-slough.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: sloughPolygonStyle
+    source: new ol.source.Vector({
+        url: 'data/shark-river-slough.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: sloughPolygonStyle
 });
 
 const taylorsloughLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/taylor-slough.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: sloughPolygonStyle
+    source: new ol.source.Vector({
+        url: 'data/taylor-slough.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: sloughPolygonStyle
 });
 
 const labelStyle = new ol.style.Style({
     text: new ol.style.Text({
-      font: '16px sans-serif',
-      fill: new ol.style.Fill({
-        color: [255, 255, 255, 1],
-      }),
-      backgroundFill: new ol.style.Fill({
-        color: [0, 0, 0, 0.6],
-      }),
-      padding: [2, 2, 2, 2],
+        font: '16px sans-serif',
+        fill: new ol.style.Fill({
+            color: [255, 255, 255, 1],
+        }),
+        backgroundFill: new ol.style.Fill({
+            color: [0, 0, 0, 0.6],
+        }),
+        padding: [2, 2, 2, 2],
     }),
 });
 
 
 const tamiamiTrailLocationsPointLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    url: 'data/tt-labels.geojson',
-    format: new ol.format.GeoJSON(),
-  }),
-  style: function (feature) {
-    labelStyle
-      .getText()
-      .setText(feature.get('name'))
-      return labelStyle;
+    source: new ol.source.Vector({
+        url: 'data/tt-labels.geojson',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: function (feature) {
+        labelStyle
+            .getText()
+            .setText(feature.get('name'))
+        return labelStyle;
     },
 });
 
@@ -264,13 +274,13 @@ function addTreeIslandLayer() {
             });
 
             map.addLayer(treeislandLayer);
-    });
+        });
 }
 
 function isLayerOnMap(layerName) {
-  if (map) {
-    return map.getLayers().getArray().includes(layerName);
-  }
+    if (map) {
+        return map.getLayers().getArray().includes(layerName);
+    }
 }
 
 /*
@@ -314,22 +324,22 @@ const legendAndSourceList = [
    to remove everything every time
 */
 function removeLegendsAndSources() {
-  for (const item of legendAndSourceList) {
-    hideLegend(item);
-  }
+    for (const item of legendAndSourceList) {
+        hideLegend(item);
+    }
 }
 
 function resetMap() {
-  for (const layer of layerList) {
-    if (isLayerOnMap(layer)) {
-      map.removeLayer(layer);
+    for (const layer of layerList) {
+        if (isLayerOnMap(layer)) {
+            map.removeLayer(layer);
+        }
     }
-  }
 
-  // this one doesn't work in the loop for some reason, adding here
-  map.removeLayer(treeislandLayer);
+    // this one doesn't work in the loop for some reason, adding here
+    map.removeLayer(treeislandLayer);
 
-  removeLegendsAndSources();
+    removeLegendsAndSources();
 }
 
 
@@ -338,17 +348,17 @@ function resetMap() {
     courtesy of https://codepen.io/maptastik/pen/qLrdyG
 */
 function fadeInLayer(lyr, startOpacity, finalOpacity, opacityStep, delay) {
-  let opacity = startOpacity;
-  let timer = setTimeout(function changeOpacity() {
-    if (opacity < finalOpacity) {
-      lyr.setProperties({
-        opacity: opacity
-      });
-      opacity = opacity + opacityStep
-    }
+    let opacity = startOpacity;
+    let timer = setTimeout(function changeOpacity() {
+        if (opacity < finalOpacity) {
+            lyr.setProperties({
+                opacity: opacity
+            });
+            opacity = opacity + opacityStep
+        }
 
-    timer = setTimeout(changeOpacity, delay);
-  }, delay)
+        timer = setTimeout(changeOpacity, delay);
+    }, delay)
 };
 
 /*
@@ -356,17 +366,17 @@ function fadeInLayer(lyr, startOpacity, finalOpacity, opacityStep, delay) {
     based on the fadeInLayer function above
 */
 function fadeOutLayer(lyr, startOpacity, finalOpacity, opacityStep, delay) {
-  let opacity = startOpacity;
-  let timer = setTimeout(function changeOpacity() {
-    if (opacity > finalOpacity) {
-      lyr.setProperties({
-        opacity: opacity
-      });
-      opacity = opacity - opacityStep
-    }
+    let opacity = startOpacity;
+    let timer = setTimeout(function changeOpacity() {
+        if (opacity > finalOpacity) {
+            lyr.setProperties({
+                opacity: opacity
+            });
+            opacity = opacity - opacityStep
+        }
 
-    timer = setTimeout(changeOpacity, delay);
-  }, delay)
+        timer = setTimeout(changeOpacity, delay);
+    }, delay)
 };
 
 
@@ -391,31 +401,31 @@ function addLakeComparisonLayers() {
 };
 
 historyOkeechobee.on('prerender', function (event) {
-  const ctx = event.context;
-  const mapSize = map.getSize();
-  const width = mapSize[0] * (swipe.value / 100);
-  const tl = ol.render.getRenderPixel(event, [width, 0]);
-  const tr = ol.render.getRenderPixel(event, [mapSize[0], 0]);
-  const bl = ol.render.getRenderPixel(event, [width, mapSize[1]]);
-  const br = ol.render.getRenderPixel(event, mapSize);
+    const ctx = event.context;
+    const mapSize = map.getSize();
+    const width = mapSize[0] * (swipe.value / 100);
+    const tl = ol.render.getRenderPixel(event, [width, 0]);
+    const tr = ol.render.getRenderPixel(event, [mapSize[0], 0]);
+    const bl = ol.render.getRenderPixel(event, [width, mapSize[1]]);
+    const br = ol.render.getRenderPixel(event, mapSize);
 
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(tl[0], tl[1]);
-  ctx.lineTo(bl[0], bl[1]);
-  ctx.lineTo(br[0], br[1]);
-  ctx.lineTo(tr[0], tr[1]);
-  ctx.closePath();
-  ctx.clip();
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(tl[0], tl[1]);
+    ctx.lineTo(bl[0], bl[1]);
+    ctx.lineTo(br[0], br[1]);
+    ctx.lineTo(tr[0], tr[1]);
+    ctx.closePath();
+    ctx.clip();
 });
 
 historyOkeechobee.on('postrender', function (event) {
-  const ctx = event.context;
-  ctx.restore();
+    const ctx = event.context;
+    ctx.restore();
 });
 
 swipe.addEventListener('input', function () {
-  map.render();
+    map.render();
 });
 
 
@@ -423,84 +433,106 @@ swipe.addEventListener('input', function () {
    functions to zoom in to certain locations on scroll
 */
 function zoomInToLakeOkeechobee(currentScreenWidth) {
-  if (currentScreenWidth < 1000) {
-    view.animate({
-        center: initialView,
-        zoom: 9,
-        duration: 1900,
-    });
-  } else {
-    view.animate({
-        center: centerLakeOkeechobee,
-        zoom: 10,
-        duration: 1900,
-    });
-  }
+    if (currentScreenWidth < 1000) {
+        console.log("LAKE OKEE");
+        view.animate({
+            center: initialView,
+            zoom: 9,
+            duration: 1900,
+        });
+    } else {
+        view.animate({
+            center: centerLakeOkeechobee,
+            zoom: 10,
+            duration: 1900,
+        });
+    }
 }
 
-function zoomSouthOfLake() {
-    view.animate({
-        center: southofLakeOkeechobee,
-        zoom: 9.5,
-        duration: 1900,
-    });
+function zoomSouthOfLake(currentScreenWidth) {
+    if (currentScreenWidth < 1000) {
+        view.animate({
+            center: southofLakeOMobile,
+            zoom: 9.5,
+            duration: 1900,
+        });
+    } else {
+        view.animate({
+            center: southofLakeOkeechobee,
+            zoom: 9.5,
+            duration: 1900,
+        });
+    }
+
 }
 
-function zoomOnTreeIslands() {
-    view.animate({
-        center: treeIslands,
-        zoom: 11,
-        duration: 1900,
-    });
+function zoomOnTreeIslands(currentScreenWidth) {
+    if (currentScreenWidth < 1000) {
+        view.animate({
+            center: treeIslandsMobile,
+            zoom: 10,
+            duration: 1900,
+        });
+    } else {
+        view.animate({
+            center: treeIslands,
+            zoom: 11,
+            duration: 1900,
+        });
+    }
+
 }
 
 function zoomOnStormwaterTreatment(currentScreenWidth) {
-  if (currentScreenWidth < 1000) {
-    view.animate({
-        center: southofLakeOkeechobee,
-        zoom: 9,
-        duration: 1900,
-    });
-  } else {
-    view.animate({
-        center: southofLakeOkeechobee,
-        zoom: 9.5,
-        duration: 1900,
-    });
-  }
+    if (currentScreenWidth < 1000) {
+        view.animate({
+            center: staViewMobile,
+            zoom: 9.5,
+            duration: 1900,
+        });
+    } else {
+        view.animate({
+            center: staView,
+            zoom: 9,
+            duration: 1900,
+        });
+    }
 }
 
 function zoomToSouthView(currentScreenWidth) {
-  if (currentScreenWidth < 1000) {
-    view.animate({
-      center: southView,
-      zoom: 9.5,
-      duration: 1900,
-    });
-  }
-  view.animate({
-    center: southView,
-    zoom: 10,
-    duration: 1900,
-  });
+    if (currentScreenWidth < 1000) {
+        view.animate({
+            center: southView,
+            zoom: 9.5,
+            duration: 1900,
+        });
+    } else {
+        view.animate({
+            center: southView,
+            zoom: 10,
+            duration: 1900,
+        });
+    }
+
 }
 
 /*
   zoom back to starting zoom and center
 */
 function zoomBackToOverallView(currentScreenWidth) {
-  if (currentScreenWidth < 1000) {
-    view.animate({
-        center: initialViewMobile,
-        zoom: 8.5,
-        duration: 1900,
-    });
-  }
-  view.animate({
-      center: initialView,
-      zoom: 9,
-      duration: 1900,
-  });
+    if (currentScreenWidth < 1000) {
+        view.animate({
+            center: initialViewMobile,
+            zoom: 8.5,
+            duration: 1900,
+        });
+    } else {
+        view.animate({
+            center: initialView,
+            zoom: 9,
+            duration: 1900,
+        });
+    }
 }
 
 
@@ -535,10 +567,10 @@ function fadeInUrbanizedLayer() {
 */
 function addUrbanizedLayers() {
     if (!isLayerOnMap(urbanizedLayer)) {
-      map.addLayer(urbanizedLayer);
+        map.addLayer(urbanizedLayer);
     }
     urbanizedLayer.setProperties({
-      opacity: 0
+        opacity: 0
     });
     fadeInUrbanizedLayer();
     map.addLayer(currentOkeechobee);
@@ -593,12 +625,12 @@ function handleStepEnter(response) {
             resetMapToHistoricView(currentScreenWidth);
             break;
         case 1:
-            if(currentDirection === 'down') {
-               fadeOutHistoryLayer();
-               removeLegendsAndSources();
+            if (currentDirection === 'down') {
+                fadeOutHistoryLayer();
+                removeLegendsAndSources();
             } else {
-              resetMap();
-              zoomBackToOverallView(currentScreenWidth);
+                resetMap();
+                zoomBackToOverallView(currentScreenWidth);
             }
             addUrbanizedLayers();
             break;
@@ -629,7 +661,7 @@ function handleStepEnter(response) {
             zoomOnTreeIslands(currentScreenWidth);
             showLegend('treeIslandSource');
             break;
-         case 6:
+        case 6:
             resetMap();
             zoomToSouthView(currentScreenWidth);
             addTamiamiTrailLocations();
@@ -652,6 +684,15 @@ function init() {
             debug: false
         })
         .onStepEnter(handleStepEnter);
+    
+    // go to mobile view on map
+    if (startingScreenWidth < 1000) {
+        view.animate({
+            center: initialViewMobile,
+            zoom: 8.5,
+            duration: 30,
+        });
+    }
 }
 
 // kick things off

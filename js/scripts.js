@@ -9,6 +9,13 @@
 
 window.addEventListener('DOMContentLoaded', event => {
 
+    /*******
+        Reload map and scroll to top on page load
+    *****/
+
+    var mapTop= document.getElementById("page-top").offsetTop;
+    window.scrollTo({ top: mapTop, behavior: 'smooth'});
+
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');

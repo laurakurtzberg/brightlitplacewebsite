@@ -159,6 +159,8 @@ span.colorcube.yellow-border {
   position: relative;
   margin-bottom: 40vh;
   z-index: 10000;
+    width: 120%;
+    margin-left: -10%;
 }
 
 .outer-photo-container {
@@ -219,14 +221,6 @@ span.colorcube.yellow-border {
   text-align: right;
 }
 
-.slider-labels {
-  display: flex;
-  justify-content: space-between;
-  width: 94%;
-  margin: auto;
-  margin-bottom: 20px;
-}
-
 video.responsivevideo {
   width: 100%;
   height: auto;
@@ -263,6 +257,82 @@ img.responsiveimg {
   display: none;
 }
 
+
+input[type='range'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input[type='range']:focus {
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+input[type='range']::-moz-range-thumb {
+  border: none;
+}
+.range-style {
+  width: 90%;
+  height: 45px;
+  padding: 10px;
+  background: #6f6f6f;
+  border-radius: 8px;
+  box-shadow: -2px -2px 8px #333, 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+.range-style::-webkit-slider-runnable-track {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  border-radius: 10px;
+  box-shadow: inset -2px -2px 8px #333, inset 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+.range-style::-webkit-slider-thumb {
+  position: relative;
+  top: -50%;
+  width: 40px;
+  height: 40px;
+  background-color: #6f6f6f;
+  background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.8), transparent);
+  border-radius: 50%;
+  box-shadow: -1px -1px 2px #333, 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.range-style::-moz-range-track {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  border-radius: 10px;
+  box-shadow: inset -2px -2px 8px #999, inset 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+.range-style::-moz-range-thumb {
+  position: relative;
+  top: -50%;
+  width: 40px;
+  height: 40px;
+  background-color: #6f6f6f;
+  background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.8), transparent);
+  border-radius: 50%;
+  box-shadow: -1px -1px 2px #333, 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#swipe {
+    display: block;
+    margin: auto;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 94%;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 7px;
+}
+
+.other-paragraphs.slider {
+    padding-top: 10px;
+}
+
 @media screen and (max-width: 1000px) {
   video.responsivevideo {
     width: auto;
@@ -275,7 +345,10 @@ img.responsiveimg {
   }
 }
 
+
+
 @media screen and (max-width: 600px) {
+    
   .step {
     margin: auto;
     width: 85%;
@@ -325,6 +398,7 @@ img.responsiveimg {
     z-index: 10000;
     width: 85%;
     margin: auto;
+    overflow: visible;
   }
 
   .mobile-hide {

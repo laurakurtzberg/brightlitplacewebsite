@@ -10,7 +10,6 @@ body {
 
 .video-holder-for-the-holder {
     width: 100%;
-    height: 100vh;
     overflow: hidden;
     position: relative;
 }

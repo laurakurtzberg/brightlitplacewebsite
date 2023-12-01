@@ -7918,6 +7918,22 @@ fieldset:disabled .btn {
     --bs-aspect-ratio: 42.8571428571%;
 }
 
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+}
+
 .sticky-top {
     position: sticky;
     top: 0;
@@ -13104,14 +13120,6 @@ body {
     right: 0;
     left: 0;
     z-index: 1030;
-}
-
-.absolute-top {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
 }
 
 .fixed-bottom {
