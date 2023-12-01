@@ -1,4 +1,13 @@
 /*******
+   Reload map and scroll to top on page load
+*****/
+window.addEventListener('DOMContentLoaded', event => {
+    var mapTop= document.getElementById("page-top").offsetTop;
+    window.scrollTo({ top: mapTop, behavior: 'smooth'});
+    removeLegendsAndSources();
+});
+
+/*******
     Selecting different parts of the HTML for use in scrollytelling
 *****/
 var main = document.getElementById("main");

@@ -157,16 +157,16 @@ span.colorcube.yellow-border {
 .outer-video-container {
   height: 140vh;
   position: relative;
+  margin: auto;
   margin-bottom: 40vh;
   z-index: 10000;
   width: 100%;
-  margin-left: 0;
 }
 
 .inner-video-container {
   position: sticky;
   background: rgba(0,0,0,0.7);
-  padding-top: 2%;
+  padding: 2%;
   height: 100vh;
   top: 0;
   left: 0;
@@ -363,9 +363,10 @@ input[type='range']::-moz-range-thumb {
 
 .full-size-image {
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -373,12 +374,23 @@ input[type='range']::-moz-range-thumb {
     right: 0;
 }
 
-#lakeO {
-   background-image: url('../assets/img/lake-o-birder-scrollytelling.jpg');
+.small-scroll-image-container {
+    position: relative;
+    margin: 0 auto 2rem 1rem;
+    max-width: 25rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0);
+    height: 500px;
+    margin-bottom: 500px;
 }
 
-#staWorker {
-   background-image: url('../assets/img/ingrio-lopez-scrollytelling.jpg'); 
+#lakeO {
+   background-image: url('../assets/img/lake-o-birder-scrollytelling.jpg');
+    background-position: bottom;
+}
+
+#sta-photo-1 {
+   background-image: url('../assets/img/ingrio-lopez-scrollytelling.jpg');
 }
 
 @media screen and (max-width: 1000px) {
@@ -393,6 +405,12 @@ input[type='range']::-moz-range-thumb {
   }
 }
 
+#mainNav:not(.navbar-shrink) {
+    z-index: 100000;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 
 @media screen and (max-width: 600px) {
