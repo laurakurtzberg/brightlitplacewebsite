@@ -53,11 +53,6 @@ const view = new ol.View({
     zoom: 9,
 });
 
-const mobileView = new ol.View({
-    center: initialViewMobile,
-    zoom: 8,
-});
-
 /*
    the following 12 const variables are the vector map layers we need,
    (they don't include the two tif raster layers)
@@ -436,7 +431,7 @@ function zoomInToLakeOkeechobee(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
         view.animate({
             center: initialView,
-            zoom: 9,
+            zoom: 8.8,
             duration: 1900,
         });
     } else {
@@ -452,7 +447,7 @@ function zoomSouthOfLake(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
         view.animate({
             center: southofLakeOMobile,
-            zoom: 9.5,
+            zoom: 9.2,
             duration: 1900,
         });
     } else {
@@ -469,7 +464,7 @@ function zoomOnTreeIslands(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
         view.animate({
             center: treeIslandsMobile,
-            zoom: 10,
+            zoom: 9.8,
             duration: 1900,
         });
     } else {
@@ -486,7 +481,7 @@ function zoomOnStormwaterTreatment(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
         view.animate({
             center: staViewMobile,
-            zoom: 9,
+            zoom: 8.8,
             duration: 1900,
         });
     } else {
@@ -502,7 +497,7 @@ function zoomToSouthView(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
         view.animate({
             center: southView,
-            zoom: 9.5,
+            zoom: 9.3,
             duration: 1900,
         });
     } else {
@@ -522,7 +517,7 @@ function zoomBackToOverallView(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
         view.animate({
             center: initialViewMobile,
-            zoom: 8.5,
+            zoom: 8,
             duration: 1900,
         });
     } else {
@@ -688,7 +683,7 @@ function init() {
     if (startingScreenWidth < 1000) {
         view.animate({
             center: initialViewMobile,
-            zoom: 8.5,
+            zoom: 8,
             duration: 30,
         });
     }
