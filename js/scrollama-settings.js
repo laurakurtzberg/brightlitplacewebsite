@@ -629,8 +629,8 @@ function handleStepEnter(response) {
                 removeLegendsAndSources();
             } else {
                 resetMap();
-                zoomBackToOverallView(currentScreenWidth);
             }
+            zoomBackToOverallView(currentScreenWidth);
             addUrbanizedLayers();
             break;
         case 2:
