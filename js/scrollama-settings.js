@@ -487,7 +487,7 @@ function zoomOnStormwaterTreatment(currentScreenWidth) {
     if (currentScreenWidth < 1000) {
         view.animate({
             center: staViewMobile,
-            zoom: 9.5,
+            zoom: 9,
             duration: 1900,
         });
     } else {
@@ -680,7 +680,7 @@ function init() {
     scroller
         .setup({
             step: "#scrolly article .step",
-            offset: 0.5,
+            offset: 0.9,
             debug: false
         })
         .onStepEnter(handleStepEnter);
